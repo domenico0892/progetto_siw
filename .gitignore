@@ -2,7 +2,7 @@
 .classpath
 .project
 .settings
-/build
+/build/*
 .DS_STORE
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
