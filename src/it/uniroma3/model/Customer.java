@@ -51,6 +51,9 @@ public class Customer {
 	//@JoinColumn (name = "customer_id")
 	private List<Order> orders;
 	
+	@OneToOne
+	private User user;
+	
 	public Customer () {}
 	
 	public Customer (String firstName, String lastName, String email, String phoneNumber, Date dateOfBirth, Address address, Date registrationDate) {
