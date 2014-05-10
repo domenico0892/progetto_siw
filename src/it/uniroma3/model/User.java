@@ -1,9 +1,17 @@
 package it.uniroma3.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+@Entity
 public class User {
 	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String username;
@@ -11,9 +19,11 @@ public class User {
 	private String password;
 	
 	@OneToOne
+	@JoinColumn (name = "customer_id")
 	private Customer customer;
 	
 	@OneToOne
+	@JoinColumn (name = "administrator_id")
 	private Administrator administrator;
 	
 	public User () {}

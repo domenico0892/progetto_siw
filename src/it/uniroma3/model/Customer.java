@@ -22,7 +22,7 @@ public class Customer {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-    
+    /*
 	@Column(nullable = false)
     private String firstName;
     
@@ -50,12 +50,12 @@ public class Customer {
 	@OneToMany (mappedBy = "customer")
 	//@JoinColumn (name = "customer_id")
 	private List<Order> orders;
-	
-	@OneToOne
+	*/
+	@OneToOne (mappedBy = "customer")
 	private User user;
 	
 	public Customer () {}
-	
+	/*
 	public Customer (String firstName, String lastName, String email, String phoneNumber, Date dateOfBirth, Address address, Date registrationDate) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -66,7 +66,7 @@ public class Customer {
 		this.address = address;
 		this.orders = new ArrayList<Order>();
 	}
-
+*/
 	public Long getId() {
 		return id;
 	}
@@ -74,7 +74,12 @@ public class Customer {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
+	public User getUser () {
+		return this.user;
+	}
+}
+/*
 	public String getFirstName() {
 		return firstName;
 	}
@@ -122,4 +127,4 @@ public class Customer {
 	public void setRegistrationDate (Date registrationDate) {
 		this.registrationDate = registrationDate;
 	}
-}
+}*/
