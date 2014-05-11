@@ -16,7 +16,7 @@ public class UserFacade {
 	}
 	
 	public User getUser (String username) {
-		Query q = em.createQuery("select * from user u where username = ?");
+		Query q = em.createQuery("select * from users u where u.username = ?");
 		q.setParameter(1, username);
 		User u = (User) q.getSingleResult();
 		return u;

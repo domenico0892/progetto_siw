@@ -29,7 +29,7 @@ public class LoginUser implements Action {
 					nextPage = "/dashboard.jsp";
 				else {
 					nextPage = "/index.jsp";
-					request.setAttribute("state", "la perform √® stata effettuata");
+					request.setAttribute("state", "la perform è stata effettuata");
 				}
 			HttpSession hs = request.getSession();
 			hs.setAttribute("user", u);
