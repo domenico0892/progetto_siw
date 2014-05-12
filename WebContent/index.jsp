@@ -8,10 +8,18 @@
    <title>Progetto Sistemi informativi su web</title>
  </head>
  <body>
- <div align="center">
+ <div id="header" align="center">
  <h1>Progetto Sistemi informativi su web</h1><br>
- <div>Benvenuto ${user.username}</div>
+<c:if test="${user.username==null}">
  <a href="<c:url value="/login.jsp"/>">Effettua il login</a>
+ </c:if>
+ <c:if test="${user.username!=null}">
+ Benvenuto <b>${user.username}</b><br>
+ <a href="<c:url value="/controller/user.logout"/>">Logout</a>
+ </c:if>
+ </div>
+ <div id="body">
+ <h3>Comandi:</h3>
  <a href="<c:url value="/controller/user.getAll"/>">Visualizza tutti gli utenti</a>
  </div>
  </body>
