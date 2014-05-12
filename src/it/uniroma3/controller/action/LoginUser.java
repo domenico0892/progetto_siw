@@ -19,17 +19,15 @@ public class LoginUser implements Action {
 		String password = request.getParameter("password");
 		UserFacade facade = new UserFacade ();
 		User u = facade.getUser(username);
-		if (u == null) {
-			request.setAttribute("state", "utente inesistente");
-			nextPage = "/index.jsp";
-		}
+		if (u == null) 
+			nextPage = "/login.jsp";
 		else {
 			if (u.checkPassword(password)) {
 				if (u.getCustomer() == null)
 					nextPage = "/dashboard.jsp";
 				else {
 					nextPage = "/index.jsp";
-					request.setAttribute("state", "la perform è stata effettuata");
+					request.setAttribute("state", "la perform √® stata effettuata");
 				}
 			HttpSession hs = request.getSession();
 			hs.setAttribute("user", u);

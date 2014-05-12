@@ -10,8 +10,9 @@
  <body>
  <div align="center">
  <h1>Progetto Sistemi informativi su web</h1><br>
+ <div>Benvenuto ${user.username}</div>
  <a href="<c:url value="/login.jsp"/>">Effettua il login</a>
- ${param.state}
+ <a href="<c:url value="/controller/user.getAll"/>">Visualizza tutti gli utenti</a>
  </div>
  </body>
 </html>
