@@ -9,7 +9,7 @@ public class LogoutUser implements Action {
 	public String perform(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "/index.jsp";
+		return "/";
 	}
 	
 

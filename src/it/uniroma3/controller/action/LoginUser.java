@@ -26,7 +26,7 @@ public class LoginUser implements Action {
 				if (u.getCustomer() == null)
 					nextPage = "/dashboard.jsp";
 				else {
-					nextPage = "/index.jsp";
+					nextPage = "/";
 					request.setAttribute("state", "la perform è stata effettuata");
 				}
 			HttpSession hs = request.getSession();
