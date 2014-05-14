@@ -20,15 +20,16 @@
 </c:if>
 </div>
 
-<!-- Vetrina prodotti -->
+<!-- Vetrina prodotti 
 <c:forEach var="product" items="${products}">
 	<li><b>Nome prodotto: </b>${product.name} <b>Prezzo: ${product.price}</b></li><br>
 </c:forEach>
-<!-- Vetrina prodotti -->
+Vetrina prodotti -->
 
 <div id="body">
  <h3>Comandi: </h3>
- <a href="<c:url value="/controller/user.getAll"/>">Visualizza tutti gli utenti</a>
+ <a href="<c:url value="/controller/user.getAll"/>">Visualizza tutti gli utenti</a><br>
+ <a href="<c:url value="/controller/product.getAll"/>">Visualizza tutti i prodotti</a>
 </div>
 
  </body>

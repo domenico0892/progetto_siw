@@ -11,6 +11,6 @@ public class GetAllProduct implements Action{
 		ProductFacade facade = new ProductFacade();
 		List<Product> l = facade.getAllProducts();
 		request.setAttribute("products", l);
-		return "index.jsp";
+		return "/allProducts.jsp";
 	}
 }
