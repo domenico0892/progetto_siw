@@ -7,7 +7,8 @@
 		<non-jta-data-source>postgresDataSource</non-jta-data-source>
 		<class>it.uniroma3.model.User</class>
 		<class>it.uniroma3.model.Administrator</class>
-		<class>it.uniroma3.model.Customer</class>		
+		<class>it.uniroma3.model.Customer</class>	
+		<class>it.uniroma3.model.Product</class>		
 		<properties>
 			<property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />
 			<property name="openjpa.ConnectionUserName" value="postgres" />

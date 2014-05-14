@@ -8,19 +8,28 @@
    <title>Progetto Sistemi informativi su web</title>
  </head>
  <body>
- <div id="header" align="center">
+<div id="header" align="center">
  <h1>Progetto Sistemi informativi su web</h1><br>
+ 
 <c:if test="${user.username==null}">
  <a href="<c:url value="/login.jsp"/>">Effettua il login</a>
- </c:if>
- <c:if test="${user.username!=null}">
- Benvenuto <b>${user.username}</b><br>
+</c:if>
+
+<c:if test="${user.username!=null}"> Benvenuto <b>${user.username}</b><br>
  <a href="<c:url value="/controller/user.logout"/>">Logout</a>
- </c:if>
- </div>
- <div id="body">
- <h3>Comandi:</h3>
+</c:if>
+</div>
+
+<!-- Vetrina prodotti -->
+<c:forEach var="product" items="${products}">
+	<li><b>Nome prodotto: </b>${product.name} <b>Prezzo: ${product.price}</b></li><br>
+</c:forEach>
+<!-- Vetrina prodotti -->
+
+<div id="body">
+ <h3>Comandi: </h3>
  <a href="<c:url value="/controller/user.getAll"/>">Visualizza tutti gli utenti</a>
- </div>
+</div>
+
  </body>
 </html>
