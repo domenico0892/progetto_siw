@@ -20,11 +20,11 @@
 </c:if>
 </div>
 
-<!-- Vetrina prodotti 
+Vetrina prodotti 
 <c:forEach var="product" items="${products}">
 	<li><b>Nome prodotto: </b>${product.name} <b>Prezzo: ${product.price}</b></li><br>
 </c:forEach>
-Vetrina prodotti -->
+
 
 <div id="body">
  <h3>Comandi: </h3>

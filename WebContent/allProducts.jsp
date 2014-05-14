@@ -11,5 +11,6 @@
 <c:forEach var="product" items="${products}">
 	<li><b>Nome prodotto: </b>${product.name} <b>Prezzo: ${product.price}</b></li><br>
 </c:forEach>
+<a href="<c:url value="/"/>">Torna alla home</a>
 </body>
 </html>
