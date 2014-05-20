@@ -32,8 +32,8 @@ public class Product {
 	@Column(nullable = false)
 	private String code;
 	
-	/*@ManyToMany (mappedBy="products")
-	private List<Provider> providers;*/
+	@ManyToMany (mappedBy="products")
+	private List<Provider> providers;
 	
 	public Product() {
 	}

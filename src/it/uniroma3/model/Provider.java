@@ -35,8 +35,8 @@ public class Provider {
 	@JoinColumn (name="address_fk")
 	private Address address;
 	
-	/*@ManyToMany
-	private List<Product> products;*/
+	@ManyToMany
+	private List<Product> products;
 	
 	public Provider () {}
 	
