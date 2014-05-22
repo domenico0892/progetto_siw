@@ -16,7 +16,5 @@ public class CustomerFacade {
 		q.setParameter("username", username);
 		Customer c = (Customer) q.getSingleResult();
 		return c;
-	}
-	
-	
+	}	
 }
