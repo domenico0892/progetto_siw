@@ -12,6 +12,7 @@ public class CustomerController {
 	
 	@EJB (beanName="customerFacade")
 	private CustomerFacade customerFacade;	
+	
 	private String username;
 	private String password;
 	private Customer customer;

@@ -17,8 +17,8 @@
 	Benvenuto ${customerController.customer.username}
 </c:if> <br>
 
-<!-- Link amministrazione -->
- <c:if test="${administratorController.administrator==null}"> 
+<!-- Link per login admin -->
+ <c:if test="${administratorController.administrator==null && customerController.customer==null}"> 
 	<h:outputLink value="loginDashboard.jsp">Dashboard Amministrazione</h:outputLink> 
  </c:if>
 <!-------------------------->

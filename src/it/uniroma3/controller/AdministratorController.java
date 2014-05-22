@@ -7,12 +7,13 @@ import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 
-@ManagedBean
+@ManagedBean 
 @SessionScoped
 public class AdministratorController {
 	
 	@EJB (beanName="administratorFacade")
 	private AdministratorFacade administratorFacade;
+	
 	private String username;
 	private String password;
 	private Administrator administrator;
@@ -20,12 +21,13 @@ public class AdministratorController {
 	public String loginAdmin() {
 		Administrator a = this.administratorFacade.getAdministratorByUsername(this.username);
 		if(a!=null){
-			if(a.verificaPassword(this.password)){
-				this.administrator = a;
-				return "dashboard";
-			} else 
-				return "loginDashboard";
-		} 
+			try {		
+				if(a.verificaPassword(this.password)){
+					this.administrator = a;
+					return "dashboard";
+				} else return "loginDashboard";
+			} catch (Exception e) { return "loginDashboard"; }
+		}
 		return "loginDashboard";
 	}
 	
