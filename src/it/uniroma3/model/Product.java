@@ -82,11 +82,11 @@ public class Product {
 		this.description = desc;
 	}
 	
-	public String getDescrizione() {
+	public String getDescription() {
 		return this.description;
 	}
 	
-	public String getCodice() {
+	public String getCode() {
 		return this.code;
 	}
 

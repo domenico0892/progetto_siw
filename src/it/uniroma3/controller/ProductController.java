@@ -1,5 +1,7 @@
 package it.uniroma3.controller;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
@@ -16,10 +18,16 @@ public class ProductController {
 	private String description;
 	private String code;
 	private Product product;
+	private List<Product> products;
 	
 	public String createProduct() {
 		this.product = productFacade.createProduct(name, code, price, description);
 		return "product"; 
+	}
+	
+	public String listProducts() {
+		this.products = this.productFacade.listProducts();
+		return "allProducts";
 	}
 
 	public ProductFacade getProductFacade() {
@@ -68,5 +76,9 @@ public class ProductController {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+	
+	public List<Product> getProducts() {
+		return this.products;
 	}
 }

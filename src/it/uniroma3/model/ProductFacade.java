@@ -1,5 +1,7 @@
 package it.uniroma3.model;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.*;
 
@@ -18,5 +20,11 @@ public class ProductFacade {
 	public Product getProduct(Long id) {
 		Product product = em.find(Product.class, id);
 		return product;
+	}
+
+	public List<Product> listProducts() {
+		Query q = em.createQuery("SELECT p FROM Product p");
+		List<Product> l = (List<Product>) q.getResultList();
+		return l;
 	}
 }
