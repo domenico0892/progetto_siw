@@ -53,8 +53,7 @@ public class Customer {
 	@JoinColumn (name = "address_fk")
     private Address address;
 	
-	@OneToMany (mappedBy = "customer")
-	@JoinColumn (name = "customer_id")
+	@OneToMany (mappedBy="customer")
 	private List<Order> orders;
 	
 	public Customer () {}
