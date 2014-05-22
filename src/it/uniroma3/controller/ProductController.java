@@ -9,7 +9,7 @@ import it.uniroma3.model.ProductFacade;
 @ManagedBean
 public class ProductController {
 	
-	@EJB
+	@EJB(beanName="pFacade")
 	private ProductFacade productFacade;
 	private String name;
 	private Float price;
