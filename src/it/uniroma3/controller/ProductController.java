@@ -11,7 +11,6 @@ public class ProductController {
 	
 	@EJB
 	private ProductFacade productFacade;
-	
 	private String name;
 	private Float price;
 	private String description;
