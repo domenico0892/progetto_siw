@@ -5,16 +5,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-@Stateless (name="customerFacade")
-public class CustomerFacade {
+@Stateless(name="administratorFacade")
+public class AdministratorFacade {
 	
 	@PersistenceContext(unitName = "products-unit")
 	private EntityManager em;
 	
-	public Customer getCustomerByUsername (String username) {
-		Query q = em.createQuery("SELECT c FROM Customer c WHERE c.username = :username");
+	public Administrator getAdministratorByUsername(String username) {
+		Query q = em.createQuery("SELECT a FROM Administrator a WHERE a.username = :username");
 		q.setParameter("username", username);
-		Customer c = (Customer) q.getSingleResult();
-		return c;
-	}	
+		return (Administrator) q.getSingleResult();
+	}
 }

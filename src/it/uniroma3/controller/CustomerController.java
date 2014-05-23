@@ -11,7 +11,7 @@ import javax.faces.bean.SessionScoped;
 public class CustomerController {
 	
 	@EJB (beanName="customerFacade")
-	private CustomerFacade customerFacade;
+	private CustomerFacade customerFacade;	
 	
 	private String username;
 	private String password;

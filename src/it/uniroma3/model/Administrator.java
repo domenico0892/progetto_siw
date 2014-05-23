@@ -25,6 +25,10 @@ public class Administrator {
 		this.username = username;
 		this.password = password;
 	}
+	
+	public boolean verificaPassword(String password) {
+		return this.password.equals(password);
+	}
 
 	public String getUsername() {
 		return username;
