@@ -18,8 +18,8 @@ public class CustomerController {
 	private Customer customer;
 	
 	public String login () {
+		try {
 		Customer c = this.customerFacade.getCustomerByUsername(this.username);
-		if (c!=null) {
 			if (c.verificaPassword(this.password)) {
 				this.customer = c;
 				return "home";
@@ -27,7 +27,7 @@ public class CustomerController {
 			else 
 				return "login";
 		}
-		else {
+		catch (Exception e) {
 			return "login";
 		}
 	}
