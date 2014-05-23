@@ -8,19 +8,25 @@
 </head>
 <body>
 <div><h1>Progetto Siw Home</h1></div>
-
 <f:view>
+<div>
+<h:form>
 <c:if test="${customerController.customer==null}">
-<h:outputLink value="login.jsp">Effettua il login!</h:outputLink>
+<h:outputLink value="login.jsp">Accedi</h:outputLink>
 </c:if>
 <c:if test="${customerController.customer!=null}">
-	Benvenuto ${customerController.customer.username}
-</c:if> <br>
-
+Benvenuto <b>${customerController.customer.username}</b>
+<h:commandLink action="#{customerController.logout}">Logout</h:commandLink>
+</c:if>
+<h:commandLink action="#{productController.listProducts}"> Consulta il nostro catalogo </h:commandLink>
+</h:form>
+</div>
 <!-- Link per login admin -->
+<div>
  <c:if test="${administratorController.administrator==null && customerController.customer==null}"> 
 	<h:outputLink value="loginDashboard.jsp">Dashboard Amministrazione</h:outputLink> 
  </c:if>
+ </div>
 <!-------------------------->
 
 </f:view>

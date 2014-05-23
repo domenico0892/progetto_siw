@@ -35,14 +35,18 @@ public class Product {
 	@ManyToMany (mappedBy="products")
 	private List<Provider> providers;
 	
+	@Column
+	private Integer quantity;
+	
 	public Product() {
 	}
 
-	public Product (String name, Float price, String description, String code) {
+	public Product (String name, Float price, String description, String code, Integer quantity) {
 		this.name = name;
 		this.price = price;
 		this.description = description;
 		this.code = code;
+		this.quantity = quantity;
 	}     
 
 	public Long getId() {
@@ -88,6 +92,14 @@ public class Product {
 	
 	public String getCode() {
 		return this.code;
+	}
+	
+	public Integer getQuantity() {
+		return this.quantity;
+	}
+	
+	public void setQuantity(Integer q) {
+		this.quantity = q;
 	}
 
 	public String toString() {

@@ -4,15 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Product</title>
+<title>Dettagli prodotto</title>
 </head>
 <body>
 	<f:view>
 		<h1>${productController.product.name}</h1>
-		<h2>Details</h2>
-		<div>Code: ${productController.product.code}</div>
-		<div>Price: ${productController.product.price}</div>
-		<div>Description: ${productController.product.description}</div>
+		<h2>Dettagli</h2>
+		<div>Codice: ${productController.product.code}</div>
+		<div>Prezzo: ${productController.product.price}</div>
+		<div>Descrizione: ${productController.product.description}</div>
+		<div>Quantità: ${productController.product.description}</div>
 	</f:view>
 </body>
 </html>

@@ -6,6 +6,7 @@ import it.uniroma3.model.CustomerFacade;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean @SessionScoped
 public class CustomerController {
@@ -30,6 +31,11 @@ public class CustomerController {
 		catch (Exception e) {
 			return "login";
 		}
+	}
+	
+	public String logout () {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "home.jsp";
 	}
 
 	public String getUsername() {
