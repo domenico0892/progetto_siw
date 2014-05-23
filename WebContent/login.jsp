@@ -14,12 +14,14 @@
     <div>Username: <h:inputText value="#{customerController.username}" 
                      required="true"
                      requiredMessage="Username obbligatorio!"
-                     id="usernname"/></div>
+                     id="username"/></div>
     <div>Password: <h:inputSecret value="#{customerController.password}" 
     	               required="true"
                      requiredMessage="Password obbligatoria!"
                      id="password"/></div>
     <div><h:commandButton value="Submit"  action="#{customerController.login}"/></div>
+    <div><h:message for="username"/></div>
+    <div><h:message for="password"/></div>
 </h:form>
 </f:view>
 </body>
