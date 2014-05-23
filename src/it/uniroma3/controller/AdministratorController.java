@@ -19,16 +19,13 @@ public class AdministratorController {
 	private Administrator administrator;
 	
 	public String loginAdmin() {
-		Administrator a = this.administratorFacade.getAdministratorByUsername(this.username);
-		if(a!=null){
-			try {		
-				if(a.verificaPassword(this.password)){
-					this.administrator = a;
-					return "dashboard";
-				} else return "loginDashboard";
-			} catch (Exception e) { return "loginDashboard"; }
-		}
-		return "loginDashboard";
+		try {	
+			Administrator a = this.administratorFacade.getAdministratorByUsername(this.username);	
+			if(a.verificaPassword(this.password)){
+				this.administrator = a;
+				return "dashboard";
+			} else return "loginDashboard";
+		}catch (Exception e) { return "loginDashboard"; }
 	}
 	
 	public String getUsername() {
