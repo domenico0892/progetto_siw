@@ -2,27 +2,29 @@ package it.uniroma3.controller;
 
 import it.uniroma3.model.Administrator;
 import it.uniroma3.model.AdministratorFacade;
-
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean 
 @SessionScoped
 public class AdministratorController {
 	
-	@EJB (beanName="administratorFacade")
+	@EJB(beanName="administratorFacade")
 	private AdministratorFacade administratorFacade;
 	
 	private String username;
 	private String password;
+	private String firstName;
+	private String lastName;
+	private String eMail;
 	private Administrator administrator;
 	
 	public String loginAdmin() {
 		try {	
 			Administrator a = this.administratorFacade.getAdministratorByUsername(this.username);	
 			if(a.verificaPassword(this.password)){
-				this.administrator = a;
+				this.setAdministrator(a);
 				return "dashboard";
 			} else return "loginDashboard";
 		}catch (Exception e) { return "loginDashboard"; }
@@ -50,5 +52,29 @@ public class AdministratorController {
 	
 	public void setAdministrator(Administrator administrator) {
 		this.administrator = administrator;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String geteMail() {
+		return eMail;
+	}
+
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
 	}
 }

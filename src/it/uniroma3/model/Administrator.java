@@ -1,10 +1,13 @@
 package it.uniroma3.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Administrator {
@@ -19,11 +22,32 @@ public class Administrator {
 	@Column
 	private String password;
 	
-	private Administrator () {}
+	@Column
+	private String firstName;
 	
-	private Administrator (String username, String password) {
+	@Column
+	private String lastName;
+	
+	@Column
+	private String eMail;
+	
+	/*@OneToMany (mappedBy = "administrator")
+	private List<Product> products; 
+	
+	@OneToMany (mappedBy = "administrator")
+	private List<Order> orders; */
+	
+	private Administrator() {	
+	}
+	
+	private Administrator(String username, String password, String firstName, String lastName, String eMail) {
 		this.username = username;
 		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.eMail = eMail;
+		/*this.products = new ArrayList<Product>();
+		this.orders = new ArrayList<Order>();*/
 	}
 	
 	public boolean verificaPassword(String password) {
@@ -48,5 +72,29 @@ public class Administrator {
 
 	public Long getId() {
 		return id;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String geteMail() {
+		return eMail;
+	}
+
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
 	}
 }
