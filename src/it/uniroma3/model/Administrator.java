@@ -32,9 +32,9 @@ public class Administrator {
 	private String eMail;
 	
 	/*@OneToMany (mappedBy = "administrator")
-	private List<Product> products; 
+	private List<Product> products;
 	
-	@OneToMany (mappedBy = "administrator")
+	@OneToMany (mappedBy="administrator")
 	private List<Order> orders; */
 	
 	private Administrator() {	
