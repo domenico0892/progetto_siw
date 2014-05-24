@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
@@ -13,15 +14,18 @@ public class ProductController {
 	
 	@EJB(beanName="pFacade")
 	private ProductFacade productFacade;
+	@ManagedProperty(value="#{param.id}")
+	private Long id;
 	private String name;
 	private Float price;
 	private String description;
 	private String code;
+	private Integer quantity;
 	private Product product;
 	private List<Product> products;
 	
 	public String createProduct() {
-		this.product = productFacade.createProduct(name, code, price, description);
+		this.product = productFacade.createProduct(name, code, price, description, quantity);
 		return "product"; 
 	}
 	
@@ -29,13 +33,18 @@ public class ProductController {
 		this.products = this.productFacade.listProducts();
 		return "allProducts";
 	}
-
-	public ProductFacade getProductFacade() {
-		return productFacade;
+	
+	public String getProductById () {
+		this.product = this.productFacade.getProductById(this.id);
+		return "product";
 	}
-
-	public void setProductFacade(ProductFacade productFacade) {
-		this.productFacade = productFacade;
+	
+	public Long getId () {
+		return this.id;
+	}
+	
+	public void setId (Long id) {
+		this.id = id;
 	}
 
 	public String getName() {

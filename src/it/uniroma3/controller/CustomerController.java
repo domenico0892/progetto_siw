@@ -6,6 +6,7 @@ import it.uniroma3.model.CustomerFacade;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean @SessionScoped
 public class CustomerController {
@@ -18,8 +19,8 @@ public class CustomerController {
 	private Customer customer;
 	
 	public String login () {
+		try {
 		Customer c = this.customerFacade.getCustomerByUsername(this.username);
-		if (c!=null) {
 			if (c.verificaPassword(this.password)) {
 				this.customer = c;
 				return "home";
@@ -27,9 +28,14 @@ public class CustomerController {
 			else 
 				return "login";
 		}
-		else {
+		catch (Exception e) {
 			return "login";
 		}
+	}
+	
+	public String logout () {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "home.jsp";
 	}
 
 	public String getUsername() {

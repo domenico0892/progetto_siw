@@ -5,19 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Products</title>
+<title>Catalogo</title>
 </head>
 <body>
 <f:view>
-<h1>Products</h1>
+<h1>Catalogo prodotti</h1>
 <h:form>
 <table>
 	<tr>
-		<th>Name</th><th>Price</th>
+		<th>Nome</th><th>Prezzo</th>
 	</tr>
 	<c:forEach var="product" items="#{productController.products}">
 		<tr><td>
-		<h:commandLink action="#{productController.findProduct}" value="#{product.name}">
+		<h:commandLink action="#{productController.getProductById}" value="#{product.name}">
 			<f:param name="id" value="#{product.id}" />
 		</h:commandLink>
 		</td><td>${product.price}</td></tr>
