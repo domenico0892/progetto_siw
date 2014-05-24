@@ -13,13 +13,13 @@
  	Username: <h:inputText value="#{administratorController.username}"
  							required="true"
  							requiredMessage="Questo campo è obbligatorio"
- 							id="username" /><br>
+ 							id="username" /> <h:message for="username"/> <br>
  
  	Password: <h:inputSecret value="#{administratorController.password}"
  							required="true"
  							requiredMessage="Questo campo è obbligatorio"
- 							id="password" /><br>
- 
+ 							id="password" /> <h:message for="password"/> <br>
+ 							
   	<h:commandButton value="Submit" action="#{administratorController.loginAdmin}"/>
    </h:form>
   </f:view>
