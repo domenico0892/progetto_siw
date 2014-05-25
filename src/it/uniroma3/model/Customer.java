@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,7 +55,7 @@ public class Customer {
 	@JoinColumn (name = "address_fk")
     private Address address;
 	
-	@OneToMany (mappedBy="customer")
+	@OneToMany (mappedBy="customer", fetch=FetchType.EAGER)
 	private List<Order> orders;
 	
 	public Customer () {}
@@ -67,6 +69,10 @@ public class Customer {
 		this.registrationDate = registrationDate;
 		this.address = address;
 		this.orders = new ArrayList<Order>();
+	}
+	
+	public void addOrder (Order o) {
+		this.orders.add(o);
 	}
 
 	public Long getId() {
@@ -139,5 +145,13 @@ public class Customer {
 	
 	public String getUsername() {
 		return this.username;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 }

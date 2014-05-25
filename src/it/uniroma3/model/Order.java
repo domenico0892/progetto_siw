@@ -1,6 +1,7 @@
 package it.uniroma3.model;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class Order {
 	    private Date evasionDate;
 	    
 	    @Column
-	    private String state;
+	    private String status;
 	    
 	    @ManyToOne
 	    private Customer customer;
@@ -49,9 +50,11 @@ public class Order {
 	    
 	    public Order () {}
 	    
-	    public Order (Date creationDate) {
+	    public Order (Date creationDate, Customer customer) {
 	    	this.creationDate = creationDate;
-	    	this.state = "open";
+	    	this.customer = customer;
+	    	this.status = "aperto";
+	    	this.orderLines = new ArrayList<OrderLine>();
 	    }
 
 		public Date getCreationDate() {
@@ -78,12 +81,12 @@ public class Order {
 			this.evasionDate = evasionDate;
 		}
 
-		public String getState() {
-			return state;
+		public String getStatus() {
+			return status;
 		}
 
-		public void setState(String state) {
-			this.state = state;
+		public void setStatus(String status) {
+			this.status = status;
 		}
 
 		public Customer getCustomer() {
@@ -104,9 +107,5 @@ public class Order {
 
 		public Long getId() {
 			return id;
-		}
-	    
-	    
-	    
-	    
+		}   
 }

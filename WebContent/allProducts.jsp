@@ -13,7 +13,7 @@
 <h:form>
 <table>
 	<tr>
-		<th>Nome</th><th>Prezzo</th>
+		<th>Nome</th><th>Prezzo</th><th>Azioni</th>
 	</tr>
 	<c:forEach var="product" items="#{productController.products}">
 		<tr><td>
