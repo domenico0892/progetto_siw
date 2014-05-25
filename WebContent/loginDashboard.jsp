@@ -20,7 +20,7 @@
  							requiredMessage="Questo campo è obbligatorio"
  							id="password" /> <h:message for="password"/> <br>
  							
-  	<h:commandButton value="Submit" action="#{administratorController.loginAdmin}"/>
+  	<h:commandButton value="Log in" action="#{administratorController.loginAdmin}"/>
    </h:form>
   </f:view>
  </body>

@@ -2,9 +2,11 @@ package it.uniroma3.controller;
 
 import it.uniroma3.model.Administrator;
 import it.uniroma3.model.AdministratorFacade;
+
 import javax.faces.bean.ManagedBean;
 import javax.ejb.EJB;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean 
 @SessionScoped
@@ -28,6 +30,11 @@ public class AdministratorController {
 				return "dashboard";
 			} else return "loginDashboard";
 		}catch (Exception e) { return "loginDashboard"; }
+	}
+	
+	public String logOut() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "home";
 	}
 	
 	public String getUsername() {
