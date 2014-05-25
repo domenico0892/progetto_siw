@@ -21,6 +21,7 @@ Benvenuto <b>${customerController.customer.username}</b>
 <h:commandLink action="#{productController.listProducts}"> Consulta il nostro catalogo </h:commandLink>
 </h:form>
 </div>
+
 <!-- Link per login admin -->
 <div>
  <c:if test="${administratorController.administrator==null && customerController.customer==null}"> 

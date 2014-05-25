@@ -6,16 +6,21 @@
  <head> <title>Dashboard amministratore</title> </head>
  <!-- "administrator" è l'amministratore corrente (autenticato) -->
  <body>
-  <div align="center">
- 	<h2>Pannello amministrazione ${administratorController.administrator.firstName} ${administratorController.administrator.lastName}</h2>
-  <a href="#" onclick="inserisciProdotto();">Inserisci prodotto</a> 
-  <a href="#" onclick="cercaClientePerOrdine();">Ricerca cliente</a> 
-  <a href="#" onclick="evadiOrdine();">Visualizza ordini</a> 
-  <a href="#" onclick="visualizzaTuttiProdotti();">Visualizza prodotti</a>  
-  </div>
-   	 <!-- Utilizzo AJAX Asynchronous JavaScript and XML -->
-   	 <script>
-   	 function inserisciProdotto() { //No compatibile con Internet Explorer
+  <f:view>
+   <h:form>
+     <div align="center">
+ 	 <h2>Pannello amministrazione ${administratorController.administrator.firstName} ${administratorController.administrator.lastName}</h2>
+ 		<a href="#" onclick="inserisciProdotto();">Inserisci prodotto</a> 
+  		<a href="#" onclick="cercaClientePerOrdine();">Ricerca cliente</a> 
+  		<a href="#" onclick="evadiOrdine();">Visualizza ordini</a> 
+  		<a href="#" onclick="visualizzaTuttiProdotti();">Visualizza prodotti</a>
+  		<h:commandLink action="#{administratorController.logOut}">Log out</h:commandLink>
+  	 </div>
+  	</h:form>
+   </f:view>
+   	<!-- Utilizzo AJAX Asynchronous JavaScript and XML, API XMLHttp-->
+   	<script>
+   	 function inserisciProdotto() {
     		var xhr = new XMLHttpRequest();; 
        		xhr.open("POST", "newProduct.jsp", true);
        		xhr.send(null); //richiesta inviata, null perchè no dati al server
@@ -63,7 +68,7 @@
     	}
  	 }
 	</script>
-   <br><br>
+   	<br><br>
    <div id="box" align="center"></div>
  </body>
 </html>

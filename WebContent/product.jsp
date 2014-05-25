@@ -13,7 +13,7 @@
 		<div>Codice: ${productController.product.code}</div>
 		<div>Prezzo: ${productController.product.price}</div>
 		<div>Descrizione: ${productController.product.description}</div>
-		<div>Quantità: ${productController.product.description}</div>
+		<div>Quantita': ${productController.product.description}</div>
 	</f:view>
 </body>
 </html>

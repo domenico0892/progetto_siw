@@ -26,6 +26,12 @@
                      converterMessage="Price must be a number"
                      id="price"/> <h:message for="price" />
 	</div>
+    <div>Quantita': <h:inputText value="#{productController.quantity}" 
+                     required="true"
+                     requiredMessage="Quantity is mandatory"
+                     converterMessage="Quantity must be a number"
+                     id="quantity"/> <h:message for="quantity" />
+	</div>
     <div>Description: <h:inputTextarea value="#{productController.description}" 
     				required="false" 
     				cols="20" 
@@ -33,7 +39,7 @@
                      
 	</div>
 	<div>
-		<h:commandButton value="Submit"  action="#{productController.createProduct}"/>
+		<h:commandButton value="Aggiungi"  action="#{productController.createProduct}"/>
 	</div>
 </h:form>
 </f:view>

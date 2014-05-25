@@ -14,6 +14,7 @@ public class ProductController {
 	
 	@EJB(beanName="pFacade")
 	private ProductFacade productFacade;
+	
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	private String name;
@@ -89,5 +90,12 @@ public class ProductController {
 	
 	public List<Product> getProducts() {
 		return this.products;
+	}
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 }
