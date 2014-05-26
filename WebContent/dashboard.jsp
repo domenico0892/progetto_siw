@@ -12,9 +12,9 @@
  	 <h2>Pannello amministrazione ${administratorController.administrator.firstName} ${administratorController.administrator.lastName}</h2>
  		<a href="#" onclick="inserisciProdotto();">Inserisci prodotto</a> 
   		<a href="#" onclick="cercaClientePerOrdine();">Ricerca cliente</a> 
-  		<a href="#" onclick="evadiOrdine();">Visualizza ordini</a> 
-  		<a href="#" onclick="visualizzaTuttiProdotti();">Visualizza prodotti</a>
-  		<h:commandLink action="#{administratorController.logOut}">Log out</h:commandLink>
+  		<h:commandLink action="#{productController.listProducts}">Visualizza ordini </h:commandLink>
+  		<h:commandLink action="#{productController.listProducts}">Visualizza prodotti </h:commandLink>
+  		<h:commandLink action="#{administratorController.logOut}">Log out </h:commandLink>
   	 </div>
   	</h:form>
    </f:view>
@@ -42,30 +42,6 @@
              	document.getElementById("box").innerHTML=data;
          	 	}
       		}
-   	 }
-   	 
-   	 function evadiOrdine() {
- 		var xhr = new XMLHttpRequest();; 
-    		xhr.open("POST", "allOrder.jsp", true);
-    		xhr.send(null); 
-    		xhr.onreadystatechange = function() {
-       	if(xhr.readyState == 4 && xhr.status == 200) {
-          	var data = xhr.responseText;
-          	document.getElementById("box").innerHTML=data;
-      	 	}
-   		}
-	 }
-   	 
-   	 function visualizzaTuttiProdotti() {
-  		var xhr = new XMLHttpRequest();; 
-     		xhr.open("POST", "allProducts.jsp", true);
-     		xhr.send(null); 
-     		xhr.onreadystatechange = function() {
-        	if(xhr.readyState == 4 && xhr.status == 200) {
-           	var data = xhr.responseText;
-           	document.getElementById("box").innerHTML=data;
-       	 	}
-    	}
  	 }
 	</script>
    	<br><br>

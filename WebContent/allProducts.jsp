@@ -9,9 +9,9 @@
 </head>
 <body>
 <f:view>
-<h1>Catalogo prodotti</h1>
-<h:form>
-<table>
+ <h1>Catalogo prodotti</h1>
+  <h:form>
+   <table>
 	<tr>
 		<th>Nome</th><th>Prezzo</th>
 	</tr>
@@ -22,9 +22,18 @@
 		</h:commandLink>
 		</td><td>${product.price}</td></tr>
 	</c:forEach>
-</table>
-</h:form>
-
+   </table>
+  <div>
+   <c:if test="${administratorController.administrator!=null}">
+     <h:outputLink value="dashboard.jsp">Dashboard</h:outputLink>
+   </c:if>
+  </div>
+    <div>
+   <c:if test="${administratorController.administrator==null}">
+     <h:outputLink value="home.jsp">Home</h:outputLink>
+   </c:if>
+  </div>
+ </h:form>
 </f:view>
 </body>
 </html>
