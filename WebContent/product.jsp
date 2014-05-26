@@ -22,7 +22,7 @@
 		<div>Codice: ${productController.product.code}</div>
 		<div>Prezzo: ${productController.product.price} euro</div>
 		<div>Descrizione: ${productController.product.description}</div>
-		<div>Quantita': ${productController.product.description} pezzi</div>
+		<div>Quantita': ${productController.product.quantity} pezzi</div>
 	</f:view>
 </body>
 </html>
