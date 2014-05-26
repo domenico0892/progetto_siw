@@ -16,11 +16,14 @@
 </c:if>
 <c:if test="${customerController.customer!=null}">
 Benvenuto <b>${customerController.customer.username}</b>
-<h:commandLink action="#{customerController.logout}">Logout</h:commandLink>
+<h:commandLink action="#{customerController.logout}"> Logout</h:commandLink>
 </c:if>
-<h:commandLink action="#{productController.listProducts}"> Consulta il nostro catalogo </h:commandLink>
+<h:commandLink action="#{productController.listProducts}"> Tutti i prodotti </h:commandLink>
+<h:commandLink action="#{customerController.listOrders}"> I miei ordini </h:commandLink>
+<h:commandLink action="#{customerController.customerProfile}"> Il mio profilo </h:commandLink>
 </h:form>
 </div>
+<div>Ordine Corrente: ${customerController.currentOrder}</div>
 
 <!-- Link per login admin -->
 <div>

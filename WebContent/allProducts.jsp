@@ -1,6 +1,6 @@
 <%@ taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h"  uri="http://java.sun.com/jsf/html"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,11 +9,19 @@
 </head>
 <body>
 <f:view>
- <h1>Catalogo prodotti</h1>
+ <div align="center"><h1>Catalogo prodotti</h1></div>
+   <div align="center">
+   <c:if test="${administratorController.administrator!=null}">
+     <h:outputLink value="dashboard.jsp">Dashboard</h:outputLink>
+   </c:if>
+   <c:if test="${administratorController.administrator==null}">
+     <h:outputLink value="home.jsp">Home</h:outputLink>
+   </c:if>
+  </div>
   <h:form>
    <table>
 	<tr>
-		<th>Nome</th><th>Prezzo</th>
+		<th>Nome</th><th>Prezzo</th><th>Azioni</th>
 	</tr>
 	<c:forEach var="product" items="#{productController.products}">
 		<tr><td>
@@ -23,16 +31,6 @@
 		</td><td>${product.price}</td></tr>
 	</c:forEach>
    </table>
-  <div>
-   <c:if test="${administratorController.administrator!=null}">
-     <h:outputLink value="dashboard.jsp">Dashboard</h:outputLink>
-   </c:if>
-  </div>
-    <div>
-   <c:if test="${administratorController.administrator==null}">
-     <h:outputLink value="home.jsp">Home</h:outputLink>
-   </c:if>
-  </div>
  </h:form>
 </f:view>
 </body>
