@@ -7,9 +7,11 @@
  	<title>Login Amministratore</title>
  </head>
  <body>
- <h1>Login Amministratore</h1><br>
+ <div align="center"> <h1>Login Amministratore</h1> </div>
  <f:view>
   <h:form>
+  <div align="center"> <h:outputLink value="home.jsp">Home</h:outputLink></div><br>
+   <div align="center">
  	Username: <h:inputText value="#{administratorController.username}"
  							required="true"
  							requiredMessage="Questo campo è obbligatorio"
@@ -21,6 +23,7 @@
  							id="password" /> <h:message for="password"/> <br>
  							
   	<h:commandButton value="Log in" action="#{administratorController.loginAdmin}"/>
+  	</div>
    </h:form>
   </f:view>
  </body>

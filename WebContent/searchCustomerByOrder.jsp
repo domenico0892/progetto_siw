@@ -15,9 +15,7 @@
     					   required="true"
     					   requiredMessage="Non è stato inserito nessun codice"
     					   id="orderId"/> <h:message for="orderId"/>
-   </div>
-   <div align="center">
-    <h:commandButton value="Mostra cliente" action="#{orderController.getCustomer}"/>
+    <h:commandButton value="Mostra cliente" action="#{orderController.getCustomerByIdOrder}"/>
    </div>
   </h:form>
  </f:view>

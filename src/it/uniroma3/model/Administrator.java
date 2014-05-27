@@ -1,13 +1,10 @@
 package it.uniroma3.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Administrator {
@@ -31,12 +28,6 @@ public class Administrator {
 	@Column
 	private String eMail;
 	
-	/*@OneToMany (mappedBy = "administrator")
-	private List<Product> products;
-	
-	@OneToMany (mappedBy="administrator")
-	private List<Order> orders; */
-	
 	private Administrator() {	
 	}
 	
@@ -46,8 +37,6 @@ public class Administrator {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.eMail = eMail;
-		/*this.products = new ArrayList<Product>();
-		this.orders = new ArrayList<Order>();*/
 	}
 	
 	public boolean verificaPassword(String password) {
