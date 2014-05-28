@@ -5,13 +5,13 @@ import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-@SessionScoped
 public class OrderController {
 	
 	@EJB(beanName="orderFacade")
@@ -27,7 +27,8 @@ public class OrderController {
 	private String status;
 	private Customer customer;
 	private Order order;
-	
+	private List<Order> orders;
+
 	public String getCustomerByIdOrder() {
 		try {
 		    this.order = this.orderFacade.getOrderById(this.id);
@@ -36,6 +37,24 @@ public class OrderController {
 		return "infoCustomer";
 	}
 	
+	public String listOrders() {
+		try {
+			
+		} catch(Exception e) { return "dashboard"; }
+		this.orders = (List<Order>) this.orderFacade.getCloseOrders();
+		return "allOrders";
+	}
+	
+	public String evadeOrder() {
+		try {
+			this.order = this.orderFacade.getOrderById(this.id);
+		} catch(Exception e) { return "dashboard"; }
+		return "insertEvasionDateOfOrder.jsp";
+	}
+	
+	public List<Order> getOrders() {
+		return orders;
+	}	
 	public Date getCreationDate() {
 		return creationDate;
 	}
