@@ -3,6 +3,7 @@ package it.uniroma3.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -66,10 +67,6 @@ public class Customer {
 		this.registrationDate = registrationDate;
 		this.address = address;
 		this.orders = new ArrayList<Order>();
-	}
-	
-	public void addOrder (Order o) {
-		this.orders.add(o);
 	}
 
 	public Long getId() {
@@ -158,5 +155,11 @@ public class Customer {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public Order newOrder(OrderFacade orderFacade) {
+		Order order = orderFacade.createOrder(new Date (), this);
+		this.orders.add(order);
+		return order;
 	}
 }

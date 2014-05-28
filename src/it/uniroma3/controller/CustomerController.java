@@ -1,6 +1,5 @@
 package it.uniroma3.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import it.uniroma3.model.Customer;
@@ -27,6 +26,7 @@ public class CustomerController {
 	private Customer customer;
 	private Order currentOrder;
 	private List<Order> orders;
+
 	
 	public String login () {
 		try {
@@ -66,8 +66,7 @@ public class CustomerController {
 	}
 	
 	public String newOrder () {
-		this.currentOrder = this.orderFacade.createOrder (new Date(), this.customer);
-		this.customer.addOrder(this.currentOrder);
+		this.currentOrder = this.customer.newOrder(this.orderFacade);
 		return "home.jsp";
 	}
 
