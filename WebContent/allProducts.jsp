@@ -19,12 +19,14 @@
    </c:if>
   </div>
   <h:form>
-   <table>
+  <div align="center">
+   <table border="1">
 	<tr>
 		<th>Nome</th><th>Prezzo</th><th>Azioni</th>
 	</tr>
 	<c:forEach var="product" items="#{productController.products}">
-		<tr><td>
+		<tr>
+		<td>
 		<h:commandLink action="#{productController.getProductById}" value="#{product.name}">
 			<f:param name="id" value="#{product.id}" />
 		</h:commandLink>
@@ -35,6 +37,7 @@
 		</td>
 	</c:forEach>
    </table>
+  </div>
  </h:form>
 </f:view>
 </body>

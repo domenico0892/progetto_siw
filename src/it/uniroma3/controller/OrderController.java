@@ -8,6 +8,7 @@ import it.uniroma3.model.OrderLineFacade;
 import it.uniroma3.model.ProductFacade;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -40,9 +41,11 @@ public class OrderController {
 	private Date evasionDate;
 	private String status;
 	private Customer customer;
+	private List<Order> orders;
 	
 	@ManagedProperty(value="#{param.currentOrder}")
 	private Order order;
+
 	
 	public String addOrderLine () {
 		if (this.order == null)
@@ -53,6 +56,8 @@ public class OrderController {
 			return "allProduct.jsp";
 		}
 	}
+	
+
 	public String getCustomerByIdOrder() {
 		try {
 		    this.order = this.orderFacade.getOrderById(this.id);
@@ -61,6 +66,24 @@ public class OrderController {
 		return "infoCustomer";
 	}
 	
+	public String listOrders() {
+		try {
+			
+		} catch(Exception e) { return "dashboard"; }
+		this.orders = (List<Order>) this.orderFacade.getCloseOrders();
+		return "allOrders";
+	}
+	
+	public String evadeOrder() {
+		try {
+			this.order = this.orderFacade.getOrderById(this.id);
+		} catch(Exception e) { return "dashboard"; }
+		return "insertEvasionDateOfOrder.jsp";
+	}
+	
+	public List<Order> getOrders() {
+		return orders;
+	}	
 	public Date getCreationDate() {
 		return creationDate;
 	}
