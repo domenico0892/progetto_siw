@@ -21,7 +21,7 @@ public class OrderLine {
     private String item;
     
     @Column
-    private int quantity;
+    private Integer quantity;
     
     @Column
     private Float price;
@@ -30,7 +30,14 @@ public class OrderLine {
     @JoinColumn (name="product_id")
     private Product product;
     
-    private OrderLine () {}
+    public OrderLine () {}
+    
+    public OrderLine (String item, Integer quantity, Float price, Product product) {
+    	this.item = item;
+    	this.quantity = quantity;
+    	this.price = price;
+    	this.product = product;
+    }
 
 	public Long getId() {
 		return id;
@@ -48,11 +55,11 @@ public class OrderLine {
 		this.item = item;
 	}
 
-	public int getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 

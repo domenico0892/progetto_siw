@@ -23,7 +23,7 @@ Benvenuto <b>${customerController.customer.username}</b>
 <h:commandLink action="#{customerController.customerProfile}"> Il mio profilo </h:commandLink>
 </h:form>
 </div>
-<div>Ordine Corrente: ${customerController.currentOrder}</div>
+<div>Ordine Corrente: ${customerController.currentOrder.id}</div>
 
 <!-- Link per login admin -->
 <div>

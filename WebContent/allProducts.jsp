@@ -30,9 +30,11 @@
 		<h:commandLink action="#{productController.getProductById}" value="#{product.name}">
 			<f:param name="id" value="#{product.id}" />
 		</h:commandLink>
+		</td><td>${product.price}</td>
+		<td><h:commandButton action="#{orderController.addOrderLine}">
+			<f:param name="productId" value="#{product.id}"/>
+			</h:commandButton>
 		</td>
-		<td>${product.price}</td>
-		</tr>
 	</c:forEach>
    </table>
   </div>

@@ -107,5 +107,9 @@ public class Order {
 
 		public Long getId() {
 			return id;
+		}
+
+		public void addOrderLine(OrderLine ol) {
+			this.orderLines.add(ol);
 		}		
 }

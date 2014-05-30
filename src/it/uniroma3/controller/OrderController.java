@@ -3,15 +3,20 @@ import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
+import it.uniroma3.model.OrderLine;
+import it.uniroma3.model.OrderLineFacade;
+import it.uniroma3.model.ProductFacade;
 
 import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
+
 public class OrderController {
 	
 	@EJB(beanName="orderFacade")
@@ -19,15 +24,39 @@ public class OrderController {
 	
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
+
+	@EJB(beanName="orderLineFacade")
+	private OrderLineFacade orderLineFacade;
+
+	@EJB(beanName="pFacade")
+	private ProductFacade productFacade;
 	
 	private Long id;
+	
+	@ManagedProperty(value="#{param.productId}")
+	private Long productId;
+
 	private Date creationDate;
 	private Date closeDate;
 	private Date evasionDate;
 	private String status;
 	private Customer customer;
-	private Order order;
 	private List<Order> orders;
+	
+	@ManagedProperty(value="#{param.currentOrder}")
+	private Order order;
+
+	
+	public String addOrderLine () {
+		if (this.order == null)
+			return "myOrders.jsp";
+		else {
+			OrderLine ol = this.orderLineFacade.createOrderLine(1, this.productFacade.getProductById(this.productId));
+			this.order.addOrderLine(ol);
+			return "allProduct.jsp";
+		}
+	}
+	
 
 	public String getCustomerByIdOrder() {
 		try {
@@ -98,4 +127,12 @@ public class OrderController {
 	public void setId(Long id) {
 		this.id = id;
 	}	
+	
+	public Long getProductId () {
+		return this.productId;
+	}
+	
+	public void setProductId (Long productId) {
+		this.productId = productId;
+	}
 }
