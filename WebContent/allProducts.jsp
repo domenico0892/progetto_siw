@@ -20,9 +20,10 @@
   </div>
   <h:form>
   <div align="center">
+  Ordine Corrente: ${orderController.order}
    <table border="1">
 	<tr>
-		<th>Nome</th><th>Prezzo</th><th>Azioni</th>
+		<th>Nome</th><th>Prezzo</th>
 	</tr>
 	<c:forEach var="product" items="#{productController.products}">
 		<tr>
@@ -31,10 +32,6 @@
 			<f:param name="id" value="#{product.id}" />
 		</h:commandLink>
 		</td><td>${product.price}</td>
-		<td><h:commandButton action="#{orderController.addOrderLine}">
-			<f:param name="productId" value="#{product.id}"/>
-			</h:commandButton>
-		</td>
 	</c:forEach>
    </table>
   </div>
