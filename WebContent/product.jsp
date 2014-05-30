@@ -23,6 +23,14 @@
 		<div>Prezzo: ${productController.product.price} euro</div>
 		<div>Descrizione: ${productController.product.description}</div>
 		<div>Quantita': ${productController.product.quantity} pezzi</div>
+		<h:form>
+		<div>
+		<h:inputText value="#{orderController.orderedQuantity}"/>
+		<h:commandButton action="#{orderController.addOrderLine}">
+			<f:param name="productid" value="#{productController.product.id}"/>
+			</h:commandButton>
+		</div>
+	</h:form>
 	</f:view>
 </body>
 </html>
