@@ -11,7 +11,12 @@
 <body>
  <f:view>
   <h:form>
-  
+   <div align="center">Inserisci data di evasione
+  					   <h:inputText value="#{}"
+  								   required="true"
+  								   requiredMessage="Date is mandatory"
+  								   id="name"/><h:message for="name" /> (Es. 1900-01-30)</div>
+   <h:commandButton value="Conferma" action="#{orderController.}"/>
   </h:form>
  </f:view>
 </body>
