@@ -7,16 +7,15 @@ import it.uniroma3.model.OrderLine;
 import it.uniroma3.model.OrderLineFacade;
 import it.uniroma3.model.ProductFacade;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-
 public class OrderController {
 	
 	@EJB(beanName="orderFacade")
@@ -68,17 +67,15 @@ public class OrderController {
 	
 	public String listOrders() {
 		try {
-			
+			this.orders = (List<Order>) this.orderFacade.getCloseOrders();
 		} catch(Exception e) { return "dashboard"; }
-		this.orders = (List<Order>) this.orderFacade.getCloseOrders();
 		return "allOrders";
 	}
 	
 	public String evadeOrder() {
-		try {
-			this.order = this.orderFacade.getOrderById(this.id);
-		} catch(Exception e) { return "dashboard"; }
-		return "insertEvasionDateOfOrder.jsp";
+		this.order = this.orderFacade.getOrderById(this.productId);
+		
+		return "allOrders";
 	}
 	
 	public List<Order> getOrders() {

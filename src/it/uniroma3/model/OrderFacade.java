@@ -1,7 +1,10 @@
 package it.uniroma3.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;
@@ -29,5 +32,9 @@ public class OrderFacade {
 		String status = "chiuso";
 		q.setParameter("status", status );
 		return q.getResultList();
+	}
+	
+	public void updateEvasionDateOfOrder(Long id, String evasionDate) {
+		
 	}
 }
