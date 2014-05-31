@@ -6,6 +6,7 @@ import it.uniroma3.model.OrderFacade;
 import it.uniroma3.model.OrderLineFacade;
 import it.uniroma3.model.ProductFacade;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
 @ManagedBean
-
 public class OrderController {
 	
 	/* Start EJB */
@@ -90,12 +90,18 @@ public class OrderController {
 		} catch(Exception e) { return "dashboard"; }
 		return "infoCustomer";
 	}
-	
-	public String evadeOrder() {
+	/*
+	public String listOrders() {
 		try {
-			this.order = this.orderFacade.getOrderById(this.id);
+			this.orders = (List<Order>) this.orderFacade.getCloseOrders();
 		} catch(Exception e) { return "dashboard"; }
-		return "insertEvasionDateOfOrder.jsp";
+		return "allOrders";
+	}
+	*/
+	public String evadeOrder() {
+		this.order = this.orderFacade.getOrderById(this.productId);
+		
+		return "allOrders";
 	}
 	
 	public List<Order> getOrders() {
