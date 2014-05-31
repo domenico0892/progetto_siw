@@ -12,11 +12,13 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 
 public class OrderController {
 	
+	/* Start EJB */
 	@EJB(beanName="orderFacade")
 	private OrderFacade orderFacade;
 	
@@ -28,32 +30,55 @@ public class OrderController {
 
 	@EJB(beanName="pFacade")
 	private ProductFacade productFacade;
+	/* End EJB */
 	
 	private Long id;
-	
-	@ManagedProperty(value="#{param.productid}")
-	private Long productId;
-
 	private Date creationDate;
 	private Date closeDate;
 	private Date evasionDate;
 	private String status;
-	
-	@ManagedProperty (value="#{sessionScope['customerController'].customer}")
-	private Customer customer;
-	
 	private List<Order> orders;
-	
-	@ManagedProperty(value="#{sessionScope['customerController'].currentOrder}")
+	private Integer orderedQuantity;
 	private Order order;
 	
-	private Integer orderedQuantity;
+	@ManagedProperty(value="#{param.productid}")
+	private Long productId;
+
+	@ManagedProperty (value="#{sessionScope['customerController'].customer}")
+	private Customer customer;
+
+	@ManagedProperty(value="#{sessionScope['currentOrder']}")
+	private Order currentOrder;
+	
+	@ManagedProperty(value="#{param.selectedorder}")
+	private Long selectedOrder;
+	
+	public String newOrder () {
+		Order o = this.orderFacade.createOrder(new Date(), this.customer);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", o);
+		return "home.jsp";
+	}
+	
+	public String listOrders () {
+		if (this.customer==null)
+			return "login.jsp";
+		else {
+			this.orders = this.customer.getOrders();
+			return "myOrders.jsp";
+		}
+	}
+	
+	public String selectOrder () {
+		Order o = this.orderFacade.getOrderById(this.selectedOrder);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", o);
+		return "home";
+	}
 
 	public String addOrderLine () {
-		if (this.order == null)
-			return "myOrders.jsp";
+		if (this.currentOrder == null)
+			return "home";
 		else {
-			this.orderLineFacade.createOrderLine(this.order, this.orderedQuantity, this.productFacade.getProductById(this.productId));
+			this.orderLineFacade.createOrderLine(this.currentOrder, this.orderedQuantity, this.productFacade.getProductById(this.productId));
 			return "orderDetails";
 		}
 	}
@@ -64,14 +89,6 @@ public class OrderController {
 			this.customer = this.customerFacade.getCustomerById(this.order.getId());
 		} catch(Exception e) { return "dashboard"; }
 		return "infoCustomer";
-	}
-	
-	public String listOrders() {
-		try {
-			
-		} catch(Exception e) { return "dashboard"; }
-		this.orders = (List<Order>) this.orderFacade.getCloseOrders();
-		return "allOrders";
 	}
 	
 	public String evadeOrder() {
@@ -142,5 +159,21 @@ public class OrderController {
 
 	public void setOrderedQuantity(Integer orderedQuantity) {
 		this.orderedQuantity = orderedQuantity;
+	}
+
+	public Long getSelectedOrder() {
+		return selectedOrder;
+	}
+
+	public void setSelectedOrder(Long selectedOrder) {
+		this.selectedOrder = selectedOrder;
+	}
+
+	public Order getCurrentOrder() {
+		return currentOrder;
+	}
+
+	public void setCurrentOrder(Order currentOrder) {
+		this.currentOrder = currentOrder;
 	}
 }

@@ -111,5 +111,5 @@ public class Order {
 
 		public void addOrderLine(OrderLine ol) {
 			this.orderLines.add(ol);
-		}		
+		}
 }

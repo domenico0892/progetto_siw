@@ -157,9 +157,7 @@ public class Customer {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Order newOrder(OrderFacade orderFacade) {
-		Order order = orderFacade.createOrder(new Date (), this);
+	public void addOrder(Order order) {
 		this.orders.add(order);
-		return order;
 	}
 }

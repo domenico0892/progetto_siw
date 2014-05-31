@@ -19,11 +19,11 @@ Benvenuto <b>${customerController.customer.username}</b>
 <h:commandLink action="#{customerController.logout}"> Logout</h:commandLink>
 </c:if>
 <h:commandLink action="#{productController.listProducts}"> Tutti i prodotti </h:commandLink>
-<h:commandLink action="#{customerController.listOrders}"> I miei ordini </h:commandLink>
+<h:commandLink action="#{orderController.listOrders}"> I miei ordini </h:commandLink>
 <h:commandLink action="#{customerController.customerProfile}"> Il mio profilo </h:commandLink>
 </h:form>
 </div>
-<div>Ordine Corrente: ${customerController.currentOrder.id}</div>
+<div>Ordine Corrente: ${sessionScope.currentOrder.id}</div>
 
 <!-- Link per login admin -->
 <div>

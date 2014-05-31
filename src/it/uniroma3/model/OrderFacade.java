@@ -14,7 +14,9 @@ public class OrderFacade {
 	
 	public Order createOrder(Date creationDate, Customer customer) {
 		Order order = new Order (creationDate, customer);
+		customer.addOrder(order);
 		em.persist(order);
+		em.merge(customer);
 		return order;
 	}	
 	
