@@ -3,6 +3,7 @@ import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
+import it.uniroma3.model.OrderLine;
 import it.uniroma3.model.OrderLineFacade;
 import it.uniroma3.model.ProductFacade;
 
@@ -40,6 +41,7 @@ public class OrderController {
 	private List<Order> orders;
 	private Integer orderedQuantity;
 	private Order order;
+	private String message;
 	
 	@ManagedProperty(value="#{param.productid}")
 	private Long productId;
@@ -52,6 +54,7 @@ public class OrderController {
 	
 	@ManagedProperty(value="#{param.selectedorder}")
 	private Long selectedOrder;
+	
 	
 	public String newOrder () {
 		Order o = this.orderFacade.createOrder(new Date(), this.customer);
@@ -70,8 +73,14 @@ public class OrderController {
 	
 	public String selectOrder () {
 		Order o = this.orderFacade.getOrderById(this.selectedOrder);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", o);
-		return "home";
+		if (!o.getStatus().equals("aperto")) {
+			this.message = "L'ordine non puo' essere modificato";
+			return "errorPage";
+		}
+		else {
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", o);
+			return "home";
+		}
 	}
 
 	public String addOrderLine () {
@@ -79,7 +88,25 @@ public class OrderController {
 			return "home";
 		else {
 			this.orderLineFacade.createOrderLine(this.currentOrder, this.orderedQuantity, this.productFacade.getProductById(this.productId));
+			this.order = this.currentOrder;
 			return "orderDetails";
+		}
+	}
+	
+	public String closeOrder () {
+		this.order = this.orderFacade.getOrderById(this.selectedOrder);
+		if (this.order.getStatus().equals("aperto")) {
+			this.order.closeOrder();
+			this.orderFacade.updateOrder(this.order);
+			this.customerFacade.updateCustomer(this.order.getCustomer());
+			this.orders = this.customer.getOrders();
+			if (this.currentOrder.getId()==this.selectedOrder)
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("currentOrder");
+			return "home";
+		}
+		else {
+			this.message = "L'ordine non può essere chiuso";
+			return "errorPage";
 		}
 	}
 	
@@ -102,6 +129,11 @@ public class OrderController {
 		this.order = this.orderFacade.getOrderById(this.productId);
 		
 		return "allOrders";
+	}
+	
+	public String getOrderDetails () {
+		this.order = this.orderFacade.getOrderById(this.selectedOrder);
+		return "orderDetails";
 	}
 	
 	public List<Order> getOrders() {
@@ -181,5 +213,13 @@ public class OrderController {
 
 	public void setCurrentOrder(Order currentOrder) {
 		this.currentOrder = currentOrder;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

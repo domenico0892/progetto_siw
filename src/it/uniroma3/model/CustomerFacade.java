@@ -19,8 +19,10 @@ public class CustomerFacade {
 	}	
 	
 	public Customer getCustomerById(Long id) {
-		Query q = this.em.createQuery("SELECT c FROM Customer c WHERE c.id = :id");
-		q.setParameter("id", id);
-		return (Customer) q.getSingleResult();
+		return em.find(Customer.class, id);
+	}
+
+	public void updateCustomer(Customer customer) {
+		em.merge(customer);
 	}
 }

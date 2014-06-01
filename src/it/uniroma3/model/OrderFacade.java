@@ -24,9 +24,7 @@ public class OrderFacade {
 	}	
 	
 	public Order getOrderById(Long id) {
-		Query q = this.em.createQuery("SELECT o FROM Order o WHERE o.id = :id");
-		q.setParameter("id", id);
-		return (Order) q.getSingleResult();
+		return em.find (Order.class, id);
 	}
 	
 	public Collection<Order> getCloseOrders() {
@@ -34,6 +32,10 @@ public class OrderFacade {
 		String status = "chiuso";
 		q.setParameter("status", status );
 		return q.getResultList();
+	}
+	
+	public void updateOrder (Order o) {
+		em.merge(o);
 	}
 	
 	public void updateEvasionDateOfOrder(Long id, String evasionDate) {

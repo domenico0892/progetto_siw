@@ -18,10 +18,9 @@
 <table>
 <tr><th>Codice</th><th>Data Apertura</th><th>Stato</th><th>Azioni</th></tr>
 <c:forEach var="order" items="#{orderController.orders}">
-<tr><td>${order.id}</td><td>${order.creationDate}</td><td>${order.status}</td>
-<td><h:commandButton action="#{orderController.selectOrder}">
-<f:param name="selectedorder" value="#{order.id}"/>
-</h:commandButton></td></tr>
+<tr><td><h:commandLink action="#{orderController.getOrderDetails}" value="#{order.id}">
+			<f:param name="selectedorder" value="#{order.id}"/></h:commandLink></td>
+<td>${order.creationDate}</td><td>${order.status}</td></tr>
 </c:forEach>
 </table>
 </div>
