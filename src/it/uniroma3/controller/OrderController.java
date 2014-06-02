@@ -3,11 +3,8 @@ import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
-import it.uniroma3.model.OrderLine;
 import it.uniroma3.model.OrderLineFacade;
 import it.uniroma3.model.ProductFacade;
-
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -94,15 +91,13 @@ public class OrderController {
 	}
 	
 	public String closeOrder () {
-		this.order = this.orderFacade.getOrderById(this.selectedOrder);
-		if (this.order.getStatus().equals("aperto")) {
-			this.order.closeOrder();
-			this.orderFacade.updateOrder(this.order);
-			this.customerFacade.updateCustomer(this.order.getCustomer());
+		Order o = this.orderFacade.getOrderById(this.selectedOrder);
+		if (o.getStatus().equals("aperto")) {
+			o.closeOrder();
+			this.orderFacade.updateOrder(o);
+			this.customerFacade.refreshCustomer(this.customer.getId());
 			this.orders = this.customer.getOrders();
-			if (this.currentOrder.getId()==this.selectedOrder)
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("currentOrder");
-			return "index";
+			return "myOrders";
 		}
 		else {
 			this.message = "L'ordine non può essere chiuso";

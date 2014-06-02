@@ -25,4 +25,9 @@ public class CustomerFacade {
 	public void updateCustomer(Customer customer) {
 		em.merge(customer);
 	}
+	
+	public void refreshCustomer(Long id) {
+		Customer c = this.getCustomerById(id);
+		em.refresh(c);
+	}
 }

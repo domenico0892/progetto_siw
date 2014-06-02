@@ -12,7 +12,7 @@
 <div>
 <h:form>
 <c:if test="${customerController.customer==null}">
-<h:outputLink value="login.jsp">Accedi</h:outputLink>
+<h:outputLink value="faces/login.jsp">Accedi</h:outputLink>
 </c:if>
 <c:if test="${customerController.customer!=null}">
 Benvenuto <b>${customerController.customer.username}</b>
@@ -28,7 +28,7 @@ Benvenuto <b>${customerController.customer.username}</b>
 <!-- Link per login admin -->
 <div>
  <c:if test="${administratorController.administrator==null && customerController.customer==null}"> 
-	<h:outputLink value="loginDashboard.jsp">Dashboard Amministrazione</h:outputLink> 
+	<h:outputLink value="faces/loginDashboard.jsp">Dashboard Amministrazione</h:outputLink> 
  </c:if>
  </div>
 <!-------------------------->

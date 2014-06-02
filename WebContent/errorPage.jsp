@@ -11,6 +11,6 @@
 </head>
 <body>
 <h1>${orderController.message}</h1>
-<h:outputLink value="home">Torna alla home </h:outputLink>
+<a href="faces/index.jsp">Torna alla home</a>
 </body>
 </html>

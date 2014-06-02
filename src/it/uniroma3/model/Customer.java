@@ -54,7 +54,7 @@ public class Customer {
 	@JoinColumn (name = "address_fk")
     private Address address;
 	
-	@OneToMany (mappedBy="customer", fetch=FetchType.EAGER)
+	@OneToMany (mappedBy="customer", fetch=FetchType.EAGER, cascade=CascadeType.REFRESH)
 	private List<Order> orders;
 	
 	public Customer () {}
