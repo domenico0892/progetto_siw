@@ -34,7 +34,7 @@ public class AdministratorController {
 	
 	public String logOut() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "home";
+		return "index";
 	}
 	
 	public String getUsername() {

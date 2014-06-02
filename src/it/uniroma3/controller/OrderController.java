@@ -59,15 +59,15 @@ public class OrderController {
 	public String newOrder () {
 		Order o = this.orderFacade.createOrder(new Date(), this.customer);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", o);
-		return "home.jsp";
+		return "index";
 	}
 	
 	public String listOrders () {
 		if (this.customer==null)
-			return "login.jsp";
+			return "login";
 		else {
 			this.orders = this.customer.getOrders();
-			return "myOrders.jsp";
+			return "myOrders";
 		}
 	}
 	
@@ -79,13 +79,13 @@ public class OrderController {
 		}
 		else {
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", o);
-			return "home";
+			return "index";
 		}
 	}
 
 	public String addOrderLine () {
 		if (this.currentOrder == null)
-			return "home";
+			return "index";
 		else {
 			this.orderLineFacade.createOrderLine(this.currentOrder, this.orderedQuantity, this.productFacade.getProductById(this.productId));
 			this.order = this.currentOrder;
@@ -102,7 +102,7 @@ public class OrderController {
 			this.orders = this.customer.getOrders();
 			if (this.currentOrder.getId()==this.selectedOrder)
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("currentOrder");
-			return "home";
+			return "index";
 		}
 		else {
 			this.message = "L'ordine non può essere chiuso";
@@ -138,7 +138,12 @@ public class OrderController {
 	
 	public List<Order> getOrders() {
 		return orders;
+	}
+	
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}	
+
 	public Date getCreationDate() {
 		return creationDate;
 	}

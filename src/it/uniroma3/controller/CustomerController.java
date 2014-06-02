@@ -23,7 +23,7 @@ public class CustomerController {
 		Customer c = this.customerFacade.getCustomerByUsername(this.username);
 			if (c.verificaPassword(this.password)) {
 				this.customer = c;
-				return "home";
+				return "index";
 			}
 			else 
 				return "login";
@@ -35,11 +35,11 @@ public class CustomerController {
 	
 	public String logout () {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "home.jsp";
+		return "index";
 	}
 	
 	public String customerProfile() {
-		return "customerProfile.jsp";
+		return "customerProfile";
 	}
 	
 	public String getUsername() {
