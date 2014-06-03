@@ -9,16 +9,9 @@
 </head>
 <body>
 <f:view>
- <div align="center"><h1>Catalogo prodotti</h1></div>
-   <div align="center">
-   <c:if test="${administratorController.administrator!=null}">
-     <h:outputLink value="dashboard.jsp">Dashboard</h:outputLink>
-   </c:if>
-   <c:if test="${administratorController.administrator==null}">
-     <h:outputLink value="home.jsp">Home</h:outputLink>
-   </c:if>
-  </div>
+<%@include file="header.txt"%>
   <h:form>
+ <div align="center"><h1>Catalogo prodotti</h1></div>
   <div align="center">
   Ordine Corrente: ${orderController.order}
    <table border="1">
