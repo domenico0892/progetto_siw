@@ -15,12 +15,44 @@
 <h:form>
 <div><h:commandButton action="#{orderController.newOrder}" value="Nuovo ordine"/></div>
 <div>
+<h2>Ordini aperti</h2>
 <table>
-<tr><th>Codice</th><th>Data Apertura</th><th>Stato</th><th>Azioni</th></tr>
+<tr><th>Codice</th><th>Data Apertura</th><th>Azioni</th></tr>
 <c:forEach var="order" items="#{orderController.orders}">
+<c:if test="${order.status=='aperto'}">
 <tr><td><h:commandLink action="#{orderController.getOrderDetails}" value="#{order.id}">
 			<f:param name="selectedorder" value="#{order.id}"/></h:commandLink></td>
-<td>${order.creationDate}</td><td>${order.status}</td></tr>
+<td>${order.creationDate}</td>
+<td><h:commandButton action="#{orderController.selectOrder}" value="Modifica">
+<f:param name="selectedorder" value="#{order.id}"/>
+</h:commandButton>
+<h:commandButton action="#{orderController.closeOrder}" value="Chiudi">
+<f:param name="selectedorder" value="#{order.id}"/>
+</h:commandButton></td>
+</tr>
+</c:if>
+</c:forEach>
+</table>
+<h2>Ordini chiusi</h2>
+<table>
+<tr><th>Codice</th><th>Data apertura</th><th>Data Chiusura</th></tr>
+<c:forEach var="order" items="#{orderController.orders}">
+<c:if test="${order.status=='chiuso'}">
+<tr><td><h:commandLink action="#{orderController.getOrderDetails}" value="#{order.id}">
+			<f:param name="selectedorder" value="#{order.id}"/></h:commandLink></td>
+<td>${order.creationDate}</td><td>${order.closeDate}</td></tr>
+</c:if>
+</c:forEach>
+</table>
+<h2>Ordini evasi</h2>
+<table>
+<tr><th>Codice</th><th>Data apertura</th><th>Data chiusura</th><th>Data evasione</th></tr>
+<c:forEach var="order" items="#{orderController.orders}">
+<c:if test="${order.status=='evaso'}">
+<tr><td><h:commandLink action="#{orderController.getOrderDetails}" value="#{order.id}">
+			<f:param name="selectedorder" value="#{order.id}"/></h:commandLink></td>
+<td>${order.creationDate}</td><td>${order.closeDate}</td><td>${order.evasionDate}</td></tr>
+</c:if>
 </c:forEach>
 </table>
 </div>

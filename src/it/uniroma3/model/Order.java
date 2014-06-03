@@ -116,5 +116,6 @@ public class Order {
 
 		public void closeOrder() {
 			this.status = "chiuso";
+			this.closeDate = new Date();
 		}
 }

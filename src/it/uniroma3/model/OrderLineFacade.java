@@ -1,11 +1,8 @@
 package it.uniroma3.model;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 @Stateless (name="orderLineFacade")
 public class OrderLineFacade {
@@ -20,9 +17,12 @@ public class OrderLineFacade {
 		em.merge(o);
 		return ol;
 	}
+	
+	public void deleteOrderLine (Long id) {
+		this.em.remove(this.getOrderLineByOrderLineId(id));
+	}
 
-	public List<OrderLine> getOrderLinesByOrderId(Long id) {
-		Query q = this.em.createQuery("SELECT o FROM OrderLine o WHERE o.order_id= :orderId");
-		return (List<OrderLine>) q.getResultList();
+	public OrderLine getOrderLineByOrderLineId(Long id) {
+		return this.em.find(OrderLine.class, id);
 	}
 }

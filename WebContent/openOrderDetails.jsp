@@ -14,12 +14,18 @@
 <f:view>
 <h:form>
 <table>
-<tr><th>Nome Prodotto</th><th>Prezzo</th><th>Quantità</th></tr>
+<tr><th>Nome Prodotto</th><th>Prezzo</th><th>Quantità</th><th>Azioni</th></tr>
 <c:forEach var="orderLine" items="${orderController.order.orderLines}">
-<tr><td>${orderLine.item}</td><td>${orderLine.price}</td><td>${orderLine.quantity}</td></tr>
+<tr><td>${orderLine.item}</td><td>${orderLine.price}</td><td>${orderLine.quantity}</td><td>
+<h:commandButton action="#{orderController.deleteOrderLine}" value="Elimina">
+<f:param name="selectedorderline" value="#{orderLine.id}"/>
+<f:param name="selectedorder" value="#{orderController.order.id}" />
+</h:commandButton>
+</td></tr>
 </c:forEach>
 </table>
-<h:commandLink action="#{orderController.listOrders}">Torna agli ordini</h:commandLink>
+<h:commandLink action="#{orderController.listOrders}">Vai agli ordini</h:commandLink>
+<h:commandLink action="#{productController.listProducts}">Vai al catalogo</h:commandLink>
 </h:form>
 </f:view>
 </div>
