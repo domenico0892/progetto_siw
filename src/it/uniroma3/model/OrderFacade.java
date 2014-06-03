@@ -1,10 +1,8 @@
 package it.uniroma3.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Locale;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;
@@ -24,7 +22,7 @@ public class OrderFacade {
 	}	
 	
 	public Order getOrderById(Long id) {
-		return em.find (Order.class, id);
+		return this.em.find (Order.class, id);
 	}
 	
 	public Collection<Order> getCloseOrders() {
@@ -33,12 +31,19 @@ public class OrderFacade {
 		q.setParameter("status", status );
 		return q.getResultList();
 	}
-	
+
 	public void updateOrder (Order o) {
-		em.merge(o);
+		this.em.merge(o);
 	}
 	
-	public void updateEvasionDateOfOrder(Long id, String evasionDate) {
-		
+	public boolean verificaDisponibilita(Order o) {
+		for(OrderLine line : o.getOrderLines()) {
+			Product p = line.getProduct();
+			if(p.getQuantity()<line.getQuantity()) {
+				return false;
+			}
+		}
+		return true;
 	}
+
 }

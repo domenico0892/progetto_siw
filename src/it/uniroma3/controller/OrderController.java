@@ -1,10 +1,14 @@
 package it.uniroma3.controller;
+
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
+import it.uniroma3.model.OrderLine;
 import it.uniroma3.model.OrderLineFacade;
+import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
+
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +34,7 @@ public class OrderController {
 	private ProductFacade productFacade;
 	/* End EJB */
 	
+	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	private Date creationDate;
 	private Date closeDate;
@@ -107,20 +112,34 @@ public class OrderController {
 		} catch(Exception e) { return "dashboard"; }
 		return "infoCustomer";
 	}
-	/*
-	public String listOrders() {
+	
+	public String listCloseOrders() {
 		try {
 			this.orders = (List<Order>) this.orderFacade.getCloseOrders();
 		} catch(Exception e) { return "dashboard"; }
 		return "allOrders";
 	}
-	*/
+	
 	public String evadeOrder() {
-		this.order = this.orderFacade.getOrderById(this.productId);
-		
+		Order o = this.orderFacade.getOrderById(this.id);
+		if(this.orderFacade.verificaDisponibilita(o)) {
+			o.setCloseDate(new Date());
+			o.setStatus("evaso");
+			this.orderFacade.updateOrder(o);
+			this.aggiornaQuantitaMagazzino(o);
+		}
+		this.orders = (List<Order>) this.orderFacade.getCloseOrders();
 		return "allOrders";
 	}
 	
+	private void aggiornaQuantitaMagazzino(Order o) {
+		for(OrderLine line : o.getOrderLines()) {
+			Product p = line.getProduct();
+			p.setQuantity(p.getQuantity()-line.getQuantity());
+			this.productFacade.updateProduct(p);
+		}
+	}
+
 	public String getOrderDetails () {
 		this.order = this.orderFacade.getOrderById(this.selectedOrder);
 		if (this.order.getStatus().equals("aperto"))
@@ -233,6 +252,4 @@ public class OrderController {
 	public void setSelectedOrderLine(Long selectedOrderLine) {
 		this.selectedOrderLine = selectedOrderLine;
 	}
-	
-	
 }
