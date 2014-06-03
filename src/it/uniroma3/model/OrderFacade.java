@@ -2,8 +2,6 @@ package it.uniroma3.model;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.*;
 
@@ -35,15 +33,4 @@ public class OrderFacade {
 	public void updateOrder (Order o) {
 		this.em.merge(o);
 	}
-	
-	public boolean verificaDisponibilita(Order o) {
-		for(OrderLine line : o.getOrderLines()) {
-			Product p = line.getProduct();
-			if(p.getQuantity()<line.getQuantity()) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 }

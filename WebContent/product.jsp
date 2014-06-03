@@ -25,10 +25,23 @@
 		<div>Quantita': ${productController.product.quantity} pezzi</div>
 		<h:form>
 		<div>
-		<h:inputText value="#{orderController.orderedQuantity}"/>
-		<h:commandButton action="#{orderController.addOrderLine}">
+		 <c:if test="${administratorController.administrator==null}">
+		  <h:inputText value="#{orderController.orderedQuantity}"/>
+		  <h:commandButton action="#{orderController.addOrderLine}">
 			<f:param name="productid" value="#{productController.product.id}"/>
 			</h:commandButton>
+		 </c:if>
+		 <c:if test="${administratorController.administrator!=null}">
+		 	Modifica quantita' 
+		 	<h:inputText value="#{productController.quantity}" 
+                     required="true"
+                     requiredMessage="Quantity is mandatory"
+                     converterMessage="Quantity must be a number"
+                     id="quantity"/> <h:message for="quantity" />
+		 	<h:commandButton value="Conferma" action="#{productController.updateQuantity}">
+		 		<f:param name="id" value="#{productController.product.id}"/>
+		 	</h:commandButton>
+		 </c:if>
 		</div>
 	</h:form>
 	</f:view>

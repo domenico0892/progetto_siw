@@ -10,21 +10,39 @@
 <body>
 <f:view>
 <%@include file="header.txt"%>
-  <h:form>
  <div align="center"><h1>Catalogo prodotti</h1></div>
+ <div align="center"><h3>Clicca sul nome del prodotto per visualizzarne le informazioni
+ 					<br>o per modificarne la quantità presente in magazzino</h3></div>
+   <div align="center">
+   <c:if test="${administratorController.administrator!=null}">
+     <h:outputLink value="dashboard.jsp">Dashboard</h:outputLink>
+   </c:if>
+   <c:if test="${administratorController.administrator==null}">
+     <h:outputLink value="home.jsp">Home</h:outputLink>
+   </c:if>
+  </div>
+  <h:form>
+  <br><div id="box" align="center"></div><br>
   <div align="center">
-  Ordine Corrente: ${orderController.order}
+  <c:if test="${administratorController.administrator==null}">
+   Ordine Corrente: ${orderController.order}
+  </c:if>
    <table border="1">
 	<tr>
-		<th>Nome</th><th>Prezzo</th>
+		<th>Nome</th><th>Prezzo</th><th>Quantita'</th><th>Codice prodotto</th>
 	</tr>
 	<c:forEach var="product" items="#{productController.products}">
 		<tr>
-		<td>
-		<h:commandLink action="#{productController.getProductById}" value="#{product.name}">
+		 <td>
+		  <h:commandLink action="#{productController.getProductById}" value="#{product.name}">
 			<f:param name="id" value="#{product.id}" />
-		</h:commandLink>
-		</td><td>${product.price}</td>
+		  </h:commandLink>
+		 </td>
+		 <td>${product.price}</td>
+		 <c:if test="${administratorController.administrator!=null}">
+		  <td>${product.quantity}</td>
+		  <td>${product.code}</td>
+		 </c:if>
 	</c:forEach>
    </table>
   </div>

@@ -18,7 +18,7 @@ public class ProductFacade {
 	}
 
 	public Product getProductById(Long id) {
-		Product product = em.find(Product.class, id);
+		Product product = this.em.find(Product.class, id);
 		return product;
 	}
 
@@ -30,5 +30,11 @@ public class ProductFacade {
 	
 	public void updateProduct(Product p) {
 		this.em.merge(p);
+	}
+
+	public Product getProductByCode(String code) {
+		Query q = this.em.createQuery("SELECT p FROM Product p WHERE p.code = :code");
+		q.setParameter("code", code);
+		return (Product)q.getSingleResult();
 	}
 }

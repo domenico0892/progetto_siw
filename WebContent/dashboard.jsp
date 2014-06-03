@@ -10,6 +10,7 @@
    <h:form>
      <div align="center">
  	 <h2>Pannello amministrazione ${administratorController.administrator.firstName} ${administratorController.administrator.lastName}</h2>
+ 		<a href="#" onclick="inserisciCliente();">Inserisci nuovo cliente</a> 
  		<a href="#" onclick="inserisciProdotto();">Inserisci prodotto</a> 
   		<a href="#" onclick="cercaClientePerOrdine();">Ricerca cliente</a> 
   		<h:commandLink action="#{orderController.listCloseOrders}">Visualizza ordini </h:commandLink>
@@ -43,6 +44,18 @@
          	 	}
       		}
  	 }
+   	 
+   	 function inserisciCliente() {
+ 		var xhr = new XMLHttpRequest();; 
+    		xhr.open("POST", "newCustomer.jsp", true);
+    		xhr.send(null); 
+    		xhr.onreadystatechange = function() {
+       	if(xhr.readyState == 4 && xhr.status == 200) {
+          	var data = xhr.responseText;
+          	document.getElementById("box").innerHTML=data;
+      	 	}
+   		}
+	 }
 	</script>
    	<br><br>
    <div id="box" align="center"></div>
