@@ -24,7 +24,8 @@
      <c:forEach var="order" items="#{orderController.orders}">
     	<tr>
     		<td><h:commandButton action="#{orderController.evadeOrder}" value="Evadi">
-    			<f:param name="productId" value="#{order.id}" /></h:commandButton></td>
+    				<f:param name="id" value="#{order.id}" />
+    			</h:commandButton></td>
     		<td><b>${order.id}</b></td>
     		<td>${order.closeDate}</td>
     		<td>${order.customer.id}</td>

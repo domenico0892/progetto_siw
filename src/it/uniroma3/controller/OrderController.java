@@ -1,12 +1,14 @@
 package it.uniroma3.controller;
+
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
+import it.uniroma3.model.OrderLine;
 import it.uniroma3.model.OrderLineFacade;
 import it.uniroma3.model.ProductFacade;
 
-import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class OrderController {
 	@EJB(beanName="pFacade")
 	private ProductFacade productFacade;
 	
+	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	
 	@ManagedProperty(value="#{param.productid}")
@@ -74,8 +77,14 @@ public class OrderController {
 	}
 	
 	public String evadeOrder() {
-		this.order = this.orderFacade.getOrderById(this.productId);
-		
+		List<OrderLine> orderLines = new ArrayList<OrderLine>();
+		//orderLines.addAll(this.orderLineFacade.getOrderLinesByOrderId(this.id));
+		if(this.orderFacade.verificaDisponibilitˆProdotti(orderLines)) {
+			this.orders = (List<Order>) this.orderFacade.getCloseOrders();
+			return "allOrders";
+		}
+		//Messaggio d'errore: Impossibile evadere
+		this.orders = (List<Order>) this.orderFacade.getCloseOrders();
 		return "allOrders";
 	}
 	
@@ -141,4 +150,5 @@ public class OrderController {
 	public void setOrderedQuantity(Integer orderedQuantity) {
 		this.orderedQuantity = orderedQuantity;
 	}
+	
 }

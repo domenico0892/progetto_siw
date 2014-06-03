@@ -1,10 +1,8 @@
 package it.uniroma3.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Locale;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;
@@ -34,7 +32,10 @@ public class OrderFacade {
 		return q.getResultList();
 	}
 	
-	public void updateEvasionDateOfOrder(Long id, String evasionDate) {
-		
+	public boolean verificaDisponibilitˆProdotti(List<OrderLine> orderLines) {
+		/*for(OrderLine line : orderLines) 
+			if(line.getQuantity() > line.getProduct().getQuantity())
+				return false;*/
+		return true;
 	}
 }
