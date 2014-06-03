@@ -17,4 +17,12 @@ public class OrderLineFacade {
 		em.merge(o);
 		return ol;
 	}
+	
+	public void deleteOrderLine (Long id) {
+		this.em.remove(this.getOrderLineByOrderLineId(id));
+	}
+
+	public OrderLine getOrderLineByOrderLineId(Long id) {
+		return this.em.find(OrderLine.class, id);
+	}
 }

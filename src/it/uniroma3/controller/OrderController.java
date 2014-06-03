@@ -55,6 +55,9 @@ public class OrderController {
 	@ManagedProperty(value="#{param.selectedorder}")
 	private Long selectedOrder;
 	
+	@ManagedProperty(value="#{param.selectedorderline}")
+	private Long selectedOrderLine;
+	
 	
 	public String newOrder () {
 		Order o = this.orderFacade.createOrder(new Date(), this.customer);
@@ -73,14 +76,8 @@ public class OrderController {
 	
 	public String selectOrder () {
 		Order o = this.orderFacade.getOrderById(this.selectedOrder);
-		if (!o.getStatus().equals("aperto")) {
-			this.message = "L'ordine non puo' essere modificato";
-			return "errorPage";
-		}
-		else {
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", o);
-			return "index";
-		}
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", o);
+		return "index";
 	}
 
 	public String addOrderLine () {
@@ -94,19 +91,17 @@ public class OrderController {
 	}
 	
 	public String closeOrder () {
-		Order o = this.orderFacade.getOrderById(this.selectedOrder);
-		if (o.getStatus().equals("aperto")) {
-			o.closeOrder();
-			this.orderFacade.updateOrder(o);
-			this.customerFacade.refreshCustomer(this.customer.getId());
+		for (Order o : this.customer.getOrders())
+			if (o.getId().equals(this.selectedOrder)) {
+				o.closeOrder();
+				this.orderFacade.updateOrder(o);
+			}
+			if (this.currentOrder!=null)
+				if (this.currentOrder.getId().equals(this.selectedOrder))
+					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("currentOrder");
 			this.orders = this.customer.getOrders();
 			return "myOrders";
 		}
-		else {
-			this.message = "L'ordine non può essere chiuso";
-			return "errorPage";
-		}
-	}
 	
 	public String getCustomerByIdOrder() {
 		try {
@@ -145,7 +140,15 @@ public class OrderController {
 
 	public String getOrderDetails () {
 		this.order = this.orderFacade.getOrderById(this.selectedOrder);
-		return "orderDetails";
+		if (this.order.getStatus().equals("aperto"))
+			return "openOrderDetails";
+		else return "orderDetails";
+	}
+	
+	public String deleteOrderLine () {
+		this.orderLineFacade.deleteOrderLine(this.selectedOrderLine);
+		this.order = this.orderFacade.getOrderById(this.selectedOrder);
+		return "openOrderDetails";
 	}
 	
 	public List<Order> getOrders() {
@@ -240,4 +243,11 @@ public class OrderController {
 		this.message = message;
 	}
 
+	public Long getSelectedOrderLine() {
+		return selectedOrderLine;
+	}
+
+	public void setSelectedOrderLine(Long selectedOrderLine) {
+		this.selectedOrderLine = selectedOrderLine;
+	}
 }

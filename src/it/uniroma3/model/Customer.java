@@ -3,8 +3,6 @@ package it.uniroma3.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,7 +52,7 @@ public class Customer {
 	@JoinColumn (name = "address_fk")
     private Address address;
 	
-	@OneToMany (mappedBy="customer", fetch=FetchType.EAGER, cascade=CascadeType.REFRESH)
+	@OneToMany (mappedBy="customer", fetch=FetchType.EAGER)
 	private List<Order> orders;
 	
 	public Customer () {}
