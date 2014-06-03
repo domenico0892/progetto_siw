@@ -2,8 +2,6 @@ package it.uniroma3.model;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.*;
 
