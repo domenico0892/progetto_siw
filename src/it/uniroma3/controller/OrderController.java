@@ -106,7 +106,7 @@ public class OrderController {
 	public String getCustomerByIdOrder() {
 		try {
 		    this.order = this.orderFacade.getOrderById(this.id);
-			this.customer = this.customerFacade.getCustomerById(this.order.getId());
+			this.customer = this.customerFacade.getCustomerById(this.order.getCustomer().getId());
 		} catch(Exception e) { return "dashboard"; }
 		return "infoCustomer";
 	}
@@ -120,9 +120,8 @@ public class OrderController {
 	
 	public String evadeOrder() {
 		Order o = this.orderFacade.getOrderById(this.id);
-		if(this.orderFacade.verificaDisponibilita(o)) {
-			o.setCloseDate(new Date());
-			o.setStatus("evaso");
+		if(o.verificaDisponibilita()) {
+			o.evadeOrder();
 			this.orderFacade.updateOrder(o);
 			this.aggiornaQuantitaMagazzino(o);
 		}

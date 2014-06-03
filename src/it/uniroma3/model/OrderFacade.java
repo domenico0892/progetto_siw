@@ -33,15 +33,4 @@ public class OrderFacade {
 	public void updateOrder (Order o) {
 		this.em.merge(o);
 	}
-	
-	public boolean verificaDisponibilita(Order o) {
-		for(OrderLine line : o.getOrderLines()) {
-			Product p = line.getProduct();
-			if(p.getQuantity()<line.getQuantity()) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 }

@@ -10,6 +10,7 @@
    <h:form>
      <div align="center">
  	 <h2>Pannello amministrazione ${administratorController.administrator.firstName} ${administratorController.administrator.lastName}</h2>
+ 		<a href="#" onclick="inserisciCliente();">Inserisci nuovo cliente</a> 
  		<a href="#" onclick="inserisciProdotto();">Inserisci prodotto</a> 
   		<a href="#" onclick="cercaClientePerOrdine();">Ricerca cliente</a> 
   		<h:commandLink action="#{orderController.listCloseOrders}">Visualizza ordini </h:commandLink>

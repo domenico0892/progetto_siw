@@ -17,6 +17,7 @@ public class ProductController {
 	
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
+	
 	private String name;
 	private Float price;
 	private String description;
@@ -24,10 +25,37 @@ public class ProductController {
 	private Integer quantity;
 	private Product product;
 	private List<Product> products;
+	private String prodottoPresnte;
 	
+	public String getProdottoPresnte() {
+		return prodottoPresnte;
+	}
+
+	public void setProdottoPresnte(String prodottoPresnte) {
+		this.prodottoPresnte = prodottoPresnte;
+	}
+
 	public String createProduct() {
-		this.product = productFacade.createProduct(name, code, price, description, quantity);
-		return "product"; 
+		this.prodottoPresnte = null;
+		try {
+			if (this.productFacade.getProductByCode(this.code)!=null) {
+				this.prodottoPresnte = "Con questo codice è già stato registrato un altro prodotto";
+				return "newProduct";
+			}
+		} 
+		catch(Exception e) { 			
+			this.product = productFacade.createProduct(name, code, price, description, quantity);
+			return "product";  
+		}
+		return "newProduct";
+	}
+
+	public String updateQuantity() {
+		Product p = this.productFacade.getProductById(this.id);
+		p.setQuantity(this.quantity);
+		this.productFacade.updateProduct(p);
+		this.products = this.productFacade.listProducts();
+		return "allProducts";
 	}
 	
 	public String listProducts() {

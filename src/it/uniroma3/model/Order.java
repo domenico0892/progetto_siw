@@ -57,6 +57,16 @@ public class Order {
 	    	this.status = "aperto";
 	    	this.orderLines = new ArrayList<OrderLine>();
 	    }
+	    
+		public boolean verificaDisponibilita() {
+			for(OrderLine line : this.getOrderLines()) {
+				Product p = line.getProduct();
+				if(p.getQuantity()<line.getQuantity()) {
+					return false;
+				}
+			}
+			return true;
+		}
 
 		public Date getCreationDate() {
 			return creationDate;
@@ -117,5 +127,10 @@ public class Order {
 		public void closeOrder() {
 			this.status = "chiuso";
 			this.closeDate = new Date();
+		}
+		
+		public void evadeOrder() {
+			this.status = "evaso";
+			this.evasionDate = new Date();
 		}
 }
