@@ -9,6 +9,7 @@
 </head>
 <body>
 <f:view>
+<%@include file="header.txt"%>
  <div align="center"><h1>Catalogo prodotti</h1></div>
  <div align="center"><h3>Clicca sul nome del prodotto per visualizzarne le informazioni
  					<br>o per modificarne la quantità presente in magazzino</h3></div>

@@ -1,0 +1,24 @@
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+
+<h:form>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"></li>
+        <li><h:outputLink value="faces/index.jsp"> Home </h:outputLink></li>
+        <c:if test="${customerController.customer==null}">
+			<li><h:outputLink value="faces/login.jsp">Accedi</h:outputLink></li>
+		</c:if>
+		<c:if test="${customerController.customer!=null}">
+			<li><h:commandLink action="#{customerController.customerProfile}" value="Il mio profilo"/></li>
+			<li><h:commandLink action="#{customerController.logout}"> Logout</h:commandLink></li>
+		</c:if>
+		<li><h:commandLink action="#{productController.listProducts}"> Tutti i prodotti </h:commandLink></li>
+		<li><h:commandLink action="#{orderController.listOrders}"> I miei ordini </h:commandLink></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</h:form>
