@@ -44,6 +44,18 @@
          	 	}
       		}
  	 }
+   	 
+   	 function inserisciCliente() {
+ 		var xhr = new XMLHttpRequest();; 
+    		xhr.open("POST", "newCustomer.jsp", true);
+    		xhr.send(null); 
+    		xhr.onreadystatechange = function() {
+       	if(xhr.readyState == 4 && xhr.status == 200) {
+          	var data = xhr.responseText;
+          	document.getElementById("box").innerHTML=data;
+      	 	}
+   		}
+	 }
 	</script>
    	<br><br>
    <div id="box" align="center"></div>
