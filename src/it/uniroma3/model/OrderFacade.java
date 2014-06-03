@@ -33,7 +33,7 @@ public class OrderFacade {
 	}
 
 	public void updateOrder (Order o) {
-		em.merge(o);
+		this.em.merge(o);
 	}
 	
 	public boolean verificaDisponibilita(Order o) {
@@ -46,13 +46,4 @@ public class OrderFacade {
 		return true;
 	}
 
-	public void evadiOrdine(Order o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void aggiornaQuantita(Order o) {
-		// TODO Auto-generated method stub
-		
-	}
 }

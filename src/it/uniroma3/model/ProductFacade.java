@@ -27,4 +27,8 @@ public class ProductFacade {
 		List<Product> l = (List<Product>) q.getResultList();
 		return l;
 	}
+	
+	public void updateProduct(Product p) {
+		this.em.merge(p);
+	}
 }

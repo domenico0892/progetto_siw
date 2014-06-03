@@ -4,10 +4,14 @@ import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
+import it.uniroma3.model.OrderLine;
 import it.uniroma3.model.OrderLineFacade;
+import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
+
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -127,12 +131,20 @@ public class OrderController {
 			o.setCloseDate(new Date());
 			o.setStatus("evaso");
 			this.orderFacade.updateOrder(o);
-			this.orderFacade.aggiornaQuantita(o);
+			this.aggiornaQuantitaMagazzino(o);
 		}
 		this.orders = (List<Order>) this.orderFacade.getCloseOrders();
 		return "allOrders";
 	}
 	
+	private void aggiornaQuantitaMagazzino(Order o) {
+		for(OrderLine line : o.getOrderLines()) {
+			Product p = line.getProduct();
+			p.setQuantity(p.getQuantity()-line.getQuantity());
+			this.productFacade.updateProduct(p);
+		}
+	}
+
 	public String getOrderDetails () {
 		this.order = this.orderFacade.getOrderById(this.selectedOrder);
 		return "orderDetails";
