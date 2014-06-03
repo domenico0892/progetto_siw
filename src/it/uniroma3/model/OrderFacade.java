@@ -15,14 +15,14 @@ public class OrderFacade {
 	
 	public Order createOrder(Date creationDate, Customer customer) {
 		Order order = new Order (creationDate, customer);
+		customer.addOrder(order);
 		em.persist(order);
+		em.merge(customer);
 		return order;
 	}	
 	
 	public Order getOrderById(Long id) {
-		Query q = this.em.createQuery("SELECT o FROM Order o WHERE o.id = :id");
-		q.setParameter("id", id);
-		return (Order) q.getSingleResult();
+		return this.em.find (Order.class, id);
 	}
 	
 	public Collection<Order> getCloseOrders() {
@@ -31,11 +31,28 @@ public class OrderFacade {
 		q.setParameter("status", status );
 		return q.getResultList();
 	}
+
+	public void updateOrder (Order o) {
+		em.merge(o);
+	}
 	
-	public boolean verificaDisponibilitˆProdotti(List<OrderLine> orderLines) {
-		/*for(OrderLine line : orderLines) 
-			if(line.getQuantity() > line.getProduct().getQuantity())
-				return false;*/
+	public boolean verificaDisponibilita(Order o) {
+		for(OrderLine line : o.getOrderLines()) {
+			Product p = line.getProduct();
+			if(p.getQuantity()<line.getQuantity()) {
+				return false;
+			}
+		}
 		return true;
+	}
+
+	public void evadiOrdine(Order o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void aggiornaQuantita(Order o) {
+		// TODO Auto-generated method stub
+		
 	}
 }

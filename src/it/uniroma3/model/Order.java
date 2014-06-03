@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +45,7 @@ public class Order {
 	    @ManyToOne
 	    private Customer customer;
 	    
-	    @OneToMany
+	    @OneToMany (fetch = FetchType.EAGER)
 	    @JoinColumn (name = "order_id")
 	    private List<OrderLine> orderLines;
 	    
@@ -111,5 +112,9 @@ public class Order {
 
 		public void addOrderLine(OrderLine ol) {
 			this.orderLines.add(ol);
-		}		
+		}
+
+		public void closeOrder() {
+			this.status = "chiuso";
+		}
 }

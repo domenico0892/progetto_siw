@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -53,7 +54,7 @@ public class Customer {
 	@JoinColumn (name = "address_fk")
     private Address address;
 	
-	@OneToMany (mappedBy="customer", fetch=FetchType.EAGER)
+	@OneToMany (mappedBy="customer", fetch=FetchType.EAGER, cascade=CascadeType.REFRESH)
 	private List<Order> orders;
 	
 	public Customer () {}
@@ -157,9 +158,7 @@ public class Customer {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Order newOrder(OrderFacade orderFacade) {
-		Order order = orderFacade.createOrder(new Date (), this);
+	public void addOrder(Order order) {
 		this.orders.add(order);
-		return order;
 	}
 }

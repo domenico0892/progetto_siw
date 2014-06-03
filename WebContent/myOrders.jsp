@@ -12,15 +12,19 @@
 <body>
 <div><h1>I miei ordini</h1></div>
 <f:view>
-<div><h:form><h:commandButton action="#{customerController.newOrder}" value="Nuovo ordine"/></h:form></div>
+<h:form>
+<div><h:commandButton action="#{orderController.newOrder}" value="Nuovo ordine"/></div>
 <div>
 <table>
 <tr><th>Codice</th><th>Data Apertura</th><th>Stato</th><th>Azioni</th></tr>
-<c:forEach var="order" items="#{customerController.orders}">
-<tr><td>${order.id}</td><td>${order.creationDate}</td><td>${order.status}</td><td>Da implementare!</td></tr>
+<c:forEach var="order" items="#{orderController.orders}">
+<tr><td><h:commandLink action="#{orderController.getOrderDetails}" value="#{order.id}">
+			<f:param name="selectedorder" value="#{order.id}"/></h:commandLink></td>
+<td>${order.creationDate}</td><td>${order.status}</td></tr>
 </c:forEach>
 </table>
 </div>
+</h:form>
 </f:view>
 </body>
 </html>

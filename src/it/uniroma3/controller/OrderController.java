@@ -4,21 +4,19 @@ import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
-import it.uniroma3.model.OrderLine;
 import it.uniroma3.model.OrderLineFacade;
 import it.uniroma3.model.ProductFacade;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 public class OrderController {
 	
+	/* Start EJB */
 	@EJB(beanName="orderFacade")
 	private OrderFacade orderFacade;
 	
@@ -30,34 +28,81 @@ public class OrderController {
 
 	@EJB(beanName="pFacade")
 	private ProductFacade productFacade;
+	/* End EJB */
 	
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
-	
-	@ManagedProperty(value="#{param.productid}")
-	private Long productId;
-
 	private Date creationDate;
 	private Date closeDate;
 	private Date evasionDate;
 	private String status;
+	private List<Order> orders;
+	private Integer orderedQuantity;
+	private Order order;
+	private String message;
 	
+	@ManagedProperty(value="#{param.productid}")
+	private Long productId;
+
 	@ManagedProperty (value="#{sessionScope['customerController'].customer}")
 	private Customer customer;
+
+	@ManagedProperty(value="#{sessionScope['currentOrder']}")
+	private Order currentOrder;
 	
-	private List<Order> orders;
+	@ManagedProperty(value="#{param.selectedorder}")
+	private Long selectedOrder;
 	
-	@ManagedProperty(value="#{sessionScope['customerController'].currentOrder}")
-	private Order order;
 	
-	private Integer orderedQuantity;
+	public String newOrder () {
+		Order o = this.orderFacade.createOrder(new Date(), this.customer);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", o);
+		return "index";
+	}
+	
+	public String listOrders () {
+		if (this.customer==null)
+			return "login";
+		else {
+			this.orders = this.customer.getOrders();
+			return "myOrders";
+		}
+	}
+	
+	public String selectOrder () {
+		Order o = this.orderFacade.getOrderById(this.selectedOrder);
+		if (!o.getStatus().equals("aperto")) {
+			this.message = "L'ordine non puo' essere modificato";
+			return "errorPage";
+		}
+		else {
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", o);
+			return "index";
+		}
+	}
 
 	public String addOrderLine () {
-		if (this.order == null)
-			return "myOrders.jsp";
+		if (this.currentOrder == null)
+			return "index";
 		else {
-			this.orderLineFacade.createOrderLine(this.order, this.orderedQuantity, this.productFacade.getProductById(this.productId));
+			this.orderLineFacade.createOrderLine(this.currentOrder, this.orderedQuantity, this.productFacade.getProductById(this.productId));
+			this.order = this.currentOrder;
 			return "orderDetails";
+		}
+	}
+	
+	public String closeOrder () {
+		Order o = this.orderFacade.getOrderById(this.selectedOrder);
+		if (o.getStatus().equals("aperto")) {
+			o.closeOrder();
+			this.orderFacade.updateOrder(o);
+			this.customerFacade.refreshCustomer(this.customer.getId());
+			this.orders = this.customer.getOrders();
+			return "myOrders";
+		}
+		else {
+			this.message = "L'ordine non puÃ² essere chiuso";
+			return "errorPage";
 		}
 	}
 	
@@ -69,7 +114,7 @@ public class OrderController {
 		return "infoCustomer";
 	}
 	
-	public String listOrders() {
+	public String listCloseOrders() {
 		try {
 			this.orders = (List<Order>) this.orderFacade.getCloseOrders();
 		} catch(Exception e) { return "dashboard"; }
@@ -77,20 +122,30 @@ public class OrderController {
 	}
 	
 	public String evadeOrder() {
-		List<OrderLine> orderLines = new ArrayList<OrderLine>();
-		//orderLines.addAll(this.orderLineFacade.getOrderLinesByOrderId(this.id));
-		if(this.orderFacade.verificaDisponibilitˆProdotti(orderLines)) {
-			this.orders = (List<Order>) this.orderFacade.getCloseOrders();
-			return "allOrders";
+		Order o = this.orderFacade.getOrderById(this.id);
+		if(this.orderFacade.verificaDisponibilita(o)) {
+			o.setCloseDate(new Date());
+			o.setStatus("evaso");
+			this.orderFacade.updateOrder(o);
+			this.orderFacade.aggiornaQuantita(o);
 		}
-		//Messaggio d'errore: Impossibile evadere
 		this.orders = (List<Order>) this.orderFacade.getCloseOrders();
 		return "allOrders";
 	}
 	
+	public String getOrderDetails () {
+		this.order = this.orderFacade.getOrderById(this.selectedOrder);
+		return "orderDetails";
+	}
+	
 	public List<Order> getOrders() {
 		return orders;
+	}
+	
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}	
+
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -150,5 +205,29 @@ public class OrderController {
 	public void setOrderedQuantity(Integer orderedQuantity) {
 		this.orderedQuantity = orderedQuantity;
 	}
-	
+
+	public Long getSelectedOrder() {
+		return selectedOrder;
+	}
+
+	public void setSelectedOrder(Long selectedOrder) {
+		this.selectedOrder = selectedOrder;
+	}
+
+	public Order getCurrentOrder() {
+		return currentOrder;
+	}
+
+	public void setCurrentOrder(Order currentOrder) {
+		this.currentOrder = currentOrder;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 }

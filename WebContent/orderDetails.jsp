@@ -17,11 +17,20 @@
 <tr>
 <th>Nome Prodotto</th><th>Prezzo</th><th>Quantità</th>
 </tr>
-<c:forEach var="orderLine" items="#{orderController.order.orderLines}">
+<c:forEach var="orderLine" items="${orderController.order.orderLines}">
 <tr><td>${orderLine.item}</td><td>${orderLine.price}</td><td>${orderLine.quantity}</td></tr>
 </c:forEach>
 </table>
+<c:if test="${orderController.currentOrder.id==orderController.order.id}">
 <h:commandLink action="#{productController.listProducts}">Torna al catalogo</h:commandLink>
+</c:if>
+<c:if test="${orderController.currentOrder.id!=orderController.order.id}">
+<h:commandLink action="#{orderController.selectOrder}" value="Modifica ordine">
+	<f:param name="selectedorder" value="#{orderController.order.id}" /></h:commandLink>
+</c:if>
+<h:commandLink action="#{orderController.closeOrder}" value="Chiudi ordine">
+	<f:param name="selectedorder" value="#{orderController.order.id}"/></h:commandLink>
+<h:commandLink action="#{orderController.listOrders}" value="Torna agli ordini"/>
 </h:form>
 </f:view>
 </div>

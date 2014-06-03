@@ -12,7 +12,7 @@
  	 <h2>Pannello amministrazione ${administratorController.administrator.firstName} ${administratorController.administrator.lastName}</h2>
  		<a href="#" onclick="inserisciProdotto();">Inserisci prodotto</a> 
   		<a href="#" onclick="cercaClientePerOrdine();">Ricerca cliente</a> 
-  		<h:commandLink action="#{orderController.listOrders}">Visualizza ordini </h:commandLink>
+  		<h:commandLink action="#{orderController.listCloseOrders}">Visualizza ordini </h:commandLink>
   		<h:commandLink action="#{productController.listProducts}">Visualizza prodotti </h:commandLink>
   		<h:commandLink action="#{administratorController.logOut}">Log out </h:commandLink>
   	 </div>
