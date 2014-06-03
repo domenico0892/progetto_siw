@@ -31,7 +31,8 @@ public class CustomerFacade {
 	public Customer createCustomer(String username, String password,
 			String firstName, String lastName, String email,
 			String phoneNumber, Date dateOfBirth, Date date) {
-		Customer c = new Customer(username, password, firstName, lastName, email, phoneNumber,dateOfBirth, null,date);
+		Customer c = new Customer(username, password, firstName, lastName, 
+								  email, phoneNumber,dateOfBirth, null,date);
 		this.em.persist(c);
 		return c;
 	}
