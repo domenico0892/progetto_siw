@@ -12,34 +12,31 @@
 <f:view>
 <h:form>
 	<div align="center"><h3>${productController.prodottoPresnte}</h3><br></div>
-    <div align="center">Name: <h:inputText value="#{productController.name}" 
+    <table class="table" border="1">
+    <tr><td>Name: <h:inputText value="#{productController.name}" 
                      required="true"
                      requiredMessage="Name is mandatory"
-                     id="name"/> <h:message for="name" />
-	</div>
-    <div align="center">Code: <h:inputText value="#{productController.code}" 
+                     id="name"/> <h:message for="name" /></td></tr>
+	<tr><td>Code: <h:inputText value="#{productController.code}" 
                      required="true"
                      requiredMessage="Code is mandatory"
-                     id="code"/> <h:message for="code" />
-	</div>
-    <div align="center">Price: <h:inputText value="#{productController.price}" 
+                     id="code"/> <h:message for="code" /></td></tr>
+	<tr><td>Price: <h:inputText value="#{productController.price}" 
                      required="true"
                      requiredMessage="Price is mandatory"
                      converterMessage="Price must be a number"
-                     id="price"/> <h:message for="price" />
-	</div>
-    <div align="center">Quantita': <h:inputText value="#{productController.quantity}" 
+                     id="price"/> <h:message for="price" /></td></tr>
+	<tr><td>Quantita': <h:inputText value="#{productController.quantity}" 
                      required="true"
                      requiredMessage="Quantity is mandatory"
                      converterMessage="Quantity must be a number"
-                     id="quantity"/> <h:message for="quantity" />
-	</div>
-    <div align="center">Description: <h:inputTextarea value="#{productController.description}" 
+                     id="quantity"/> <h:message for="quantity" /></td></tr>
+    <tr><td>Description: <h:inputTextarea value="#{productController.description}" 
     				required="false" 
     				cols="20" 
-    				rows="5" />                     
-	</div>
-	<div align="center">
+    				rows="5" /></td></tr>          
+	</table>
+	<div>
 		<h:commandButton value="Aggiungi"  action="#{productController.createProduct}"/>
 	</div>
 </h:form>

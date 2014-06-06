@@ -1,17 +1,13 @@
 package it.uniroma3.controller;
 
 import java.util.Date;
-
+import it.uniroma3.model.Address;
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @ManagedBean @SessionScoped
 public class CustomerController {
@@ -25,14 +21,21 @@ public class CustomerController {
     private String lastName;
 	private String email;
 	private String phoneNumber;
+	private Address address;
+	private String city;
+	private String country;
+	private String state;
+	private String street;
+	private String zipcode;
 	private Date dateOfBirth;
 	private Date registrationDate;
 	private Customer customer;
 	
 	public String createCustomer() {
+		this.address = new Address(this.street, this.city, this.state, this.zipcode, this.country);
 		this.customer = this.customerFacade.createCustomer(this.username, this.password, 
 				 this.firstName, this.lastName, this.email, this.phoneNumber, 
-				 this.dateOfBirth, new Date());
+				 this.dateOfBirth, this.address, new Date());
 		return "customerProfile";
 	}
 
@@ -115,7 +118,7 @@ public class CustomerController {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
+	
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
@@ -130,5 +133,61 @@ public class CustomerController {
 
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public CustomerFacade getCustomerFacade() {
+		return customerFacade;
+	}
+
+	public void setCustomerFacade(CustomerFacade customerFacade) {
+		this.customerFacade = customerFacade;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
 	}
 }

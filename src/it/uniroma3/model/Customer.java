@@ -3,6 +3,8 @@ package it.uniroma3.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -48,7 +50,7 @@ public class Customer {
 	@Temporal (TemporalType.DATE)
 	private Date registrationDate;
     
-	@OneToOne
+	@OneToOne (cascade=CascadeType.PERSIST)
 	@JoinColumn (name = "address_fk")
     private Address address;
 	
@@ -65,6 +67,8 @@ public class Customer {
 		this.dateOfBirth = dateOfBirth;
 		this.registrationDate = registrationDate;
 		this.address = address;
+		this.username = username;
+		this.password = password;
 		this.orders = new ArrayList<Order>();
 	}
 
@@ -159,4 +163,5 @@ public class Customer {
 	public void addOrder(Order order) {
 		this.orders.add(order);
 	}
+	
 }
