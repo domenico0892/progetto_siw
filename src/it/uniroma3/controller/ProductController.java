@@ -6,14 +6,20 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+import it.uniroma3.model.Administrator;
 import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
+import it.uniroma3.model.Provider;
+import it.uniroma3.model.ProviderFacade;
 
 @ManagedBean
 public class ProductController {
 	
 	@EJB(beanName="pFacade")
 	private ProductFacade productFacade;
+	
+	@EJB(beanName="providerFacade")
+	private ProviderFacade providerFacade;
 	
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
@@ -26,6 +32,19 @@ public class ProductController {
 	private Product product;
 	private List<Product> products;
 	private String prodottoPresnte;
+	private Boolean vetrina;
+	private List<Provider> providers;
+	private List<Provider> providersByProducts;
+	
+	@ManagedProperty(value="#{param.admin}")
+	private Administrator admin;
+	
+	public String providerEditor () {
+		this.providers = this.providerFacade.getAllProviders();
+		this.providersByProducts = this.providerFacade.getProvidersByProductId(id);
+		return "providerEditor";
+		
+	}
 	
 	public String getProdottoPresnte() {
 		return prodottoPresnte;
@@ -39,12 +58,12 @@ public class ProductController {
 		this.prodottoPresnte = null;
 		try {
 			if (this.productFacade.getProductByCode(this.code)!=null) {
-				this.prodottoPresnte = "Con questo codice è già stato registrato un altro prodotto";
+				this.prodottoPresnte = "Con questo codice ÔøΩ giÔøΩ stato registrato un altro prodotto";
 				return "newProduct";
 			}
 		} 
 		catch(Exception e) { 			
-			this.product = productFacade.createProduct(name, code, price, description, quantity);
+			this.product = productFacade.createProduct(name, code, price, description, quantity, vetrina);
 			return "product";  
 		}
 		return "newProduct";
@@ -65,7 +84,10 @@ public class ProductController {
 	
 	public String getProductById () {
 		this.product = this.productFacade.getProductById(this.id);
-		return "product";
+		if (this.admin==null)
+			return "product";
+		else
+			return "productAdmin";
 	}
 	
 	public Long getId () {
@@ -126,4 +148,38 @@ public class ProductController {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+
+	public Boolean getVetrina() {
+		return vetrina;
+	}
+
+	public void setVetrina(Boolean vetrina) {
+		this.vetrina = vetrina;
+	}
+
+	public Administrator getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Administrator admin) {
+		this.admin = admin;
+	}
+
+	public List<Provider> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(List<Provider> providers) {
+		this.providers = providers;
+	}
+
+	public List<Provider> getProvidersByProducts() {
+		return providersByProducts;
+	}
+
+	public void setProvidersByProducts(List<Provider> providersByProducts) {
+		this.providersByProducts = providersByProducts;
+	}
+	
+	
 }

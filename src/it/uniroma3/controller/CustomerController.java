@@ -29,7 +29,7 @@ public class CustomerController {
 	private String zipcode;
 	private Date dateOfBirth;
 	private Date registrationDate;
-	private Customer customer;
+	private Customer customer;	
 	
 	public String createCustomer() {
 		this.address = new Address(this.street, this.city, this.state, this.zipcode, this.country);

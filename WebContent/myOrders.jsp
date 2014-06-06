@@ -10,13 +10,14 @@
 <title>I miei ordini</title>
 </head>
 <body>
-<div><h1>I miei ordini</h1></div>
 <f:view>
+<%@ include file="header.txt" %>
+<div align="center"><h1>I miei ordini</h1></div>
 <h:form>
 <div><h:commandButton action="#{orderController.newOrder}" value="Nuovo ordine"/></div>
 <div>
-<h2>Ordini aperti</h2>
-<table>
+<div align="center"> <h3>Ordini aperti</h3></div>
+<table class="table">
 <tr><th>Codice</th><th>Data Apertura</th><th>Azioni</th></tr>
 <c:forEach var="order" items="#{orderController.orders}">
 <c:if test="${order.status=='aperto'}">
@@ -33,8 +34,8 @@
 </c:if>
 </c:forEach>
 </table>
-<h2>Ordini chiusi</h2>
-<table>
+<div align="center"><h3>Ordini chiusi</h3></div>
+<table class="table">
 <tr><th>Codice</th><th>Data apertura</th><th>Data Chiusura</th></tr>
 <c:forEach var="order" items="#{orderController.orders}">
 <c:if test="${order.status=='chiuso'}">
@@ -44,8 +45,8 @@
 </c:if>
 </c:forEach>
 </table>
-<h2>Ordini evasi</h2>
-<table>
+<div align="center"> <h3>Ordini evasi</h3></div>
+<table class="table">
 <tr><th>Codice</th><th>Data apertura</th><th>Data chiusura</th><th>Data evasione</th></tr>
 <c:forEach var="order" items="#{orderController.orders}">
 <c:if test="${order.status=='evaso'}">

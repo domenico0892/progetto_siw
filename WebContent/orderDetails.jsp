@@ -9,19 +9,17 @@
 <title>Dettagli Ordine</title>
 </head>
 <body>
-<div><h1>Dettagli ordine ${orderController.order.id}</h1></div>
-<div>
 <f:view>
+<%@ include file="header.txt" %>
+<div><h1>Dettagli ordine ${orderController.order.id}</h1></div>
 <h:form>
-<table>
+<table class="table">
 <tr><th>Nome Prodotto</th><th>Prezzo</th><th>Quantità</th></tr>
 <c:forEach var="orderLine" items="${orderController.order.orderLines}">
 <tr><td>${orderLine.item}</td><td>${orderLine.price}</td><td>${orderLine.quantity}</td></tr>
 </c:forEach>
 </table>
-<h:commandLink action="#{orderController.listOrders}">Torna agli ordini</h:commandLink>
 </h:form>
 </f:view>
-</div>
 </body>
 </html>

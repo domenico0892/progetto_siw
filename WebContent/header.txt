@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"></li>
-        <li><h:outputLink value="faces/index.jsp"> Home </h:outputLink></li>
+        <li><h:commandLink action="#{homeController.home}" value="Home"/></li>
         <c:if test="${customerController.customer==null}">
 			<li><h:outputLink value="faces/login.jsp">Accedi</h:outputLink></li>
 		</c:if>
