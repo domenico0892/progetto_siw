@@ -1,7 +1,6 @@
 package it.uniroma3.controller;
 
 import java.util.Date;
-
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 
@@ -9,9 +8,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 @ManagedBean @SessionScoped
 public class CustomerController {
@@ -27,7 +24,7 @@ public class CustomerController {
 	private String phoneNumber;
 	private Date dateOfBirth;
 	private Date registrationDate;
-	private Customer customer;
+	private Customer customer;	
 	
 	public String createCustomer() {
 		this.customer = this.customerFacade.createCustomer(this.username, this.password, 

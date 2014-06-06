@@ -13,17 +13,19 @@
 <div align="center"><h1>Login</h1></div>
 <h:form>
 <div align="center">
-    Username: <h:inputText value="#{customerController.username}" 
+<table>
+    <tr><td>Username</td><td><h:inputText value="#{customerController.username}" 
                      required="true"
                      requiredMessage="Username obbligatorio!"
-                     id="username"/>
-    Password: <h:inputSecret value="#{customerController.password}" 
+                     id="username"/></td></tr>
+    <tr><td>Password</td><td><h:inputSecret value="#{customerController.password}" 
     	               required="true"
                      requiredMessage="Password obbligatoria!"
-                     id="password"/>
-    <div><h:commandButton styleClass="btn btn-warning" value="Login!"  action="#{customerController.login}"/></div>
-    <div><h:message for="username"/></div>
-    <div><h:message for="password"/></div>
+                     id="password"/></td></tr>
+    <tr align="center"><td><h:commandButton styleClass="btn btn-warning" value="Login!"  action="#{customerController.login}"/></td></tr>
+    </table>
+    <h:message for="username"/>
+    <h:message for="password"/>
     </div>
 </h:form>
 </f:view>

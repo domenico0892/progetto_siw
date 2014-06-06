@@ -34,12 +34,18 @@
 		</table>
 		<h:form>
 			<div>
-				<c:if test="${sessionScope.currentOrder!=null}">
-					<h:inputText value="#{orderController.orderedQuantity}" />
-					<h:commandButton action="#{orderController.addOrderLine}">
-						<f:param name="productid" value="#{productController.product.id}" />
+		 	Modifica quantita' 
+		 	<h:inputText value="#{productController.quantity}" required="true"
+						requiredMessage="Quantity is mandatory"
+						converterMessage="Quantity must be a number" id="quantity" />
+					<h:message for="quantity" />
+					<h:commandButton value="Conferma"
+						action="#{productController.updateQuantity}">
+						<f:param name="id" value="#{productController.product.id}" />
 					</h:commandButton>
-				</c:if>
+			</div>
+			<div>
+			<h:commandLink action="#{productController.providerEditor}" value="Mostra e modifica i fornitori" />
 			</div>
 		</h:form>
 	</f:view>

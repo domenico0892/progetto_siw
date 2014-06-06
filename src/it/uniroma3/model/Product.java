@@ -38,15 +38,18 @@ public class Product {
 	@Column
 	private Integer quantity;
 	
+	private boolean vetrina;
+	
 	public Product() {
 	}
 
-	public Product (String name, Float price, String description, String code, Integer quantity) {
+	public Product (String name, Float price, String description, String code, Integer quantity, Boolean vetrina) {
 		this.name = name;
 		this.price = price;
 		this.description = description;
 		this.code = code;
 		this.quantity = quantity;
+		this.vetrina = vetrina;
 	}     
 
 	public Long getId() {
@@ -112,5 +115,17 @@ public class Product {
 		sb.append(", code='").append(code); 
 		sb.append("}\n'");
 		return sb.toString();
+	}
+
+	public boolean isVetrina() {
+		return vetrina;
+	}
+
+	public void setVetrina(boolean vetrina) {
+		this.vetrina = vetrina;
+	}
+	
+	public void addProvider (Provider p) {
+		this.providers.add(p);
 	}
 }
