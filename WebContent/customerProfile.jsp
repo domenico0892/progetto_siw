@@ -12,11 +12,11 @@
 <body>
  <div align="center">
  <h1>Profilo di ${customerController.username}</h1><br>
-     <c:if test="${administratorController.administrator!=null}">
-     	<h:outputLink value="dashboard.jsp">Dashboard</h:outputLink><br>
-     </c:if>
 	 Nome: ${customerController.customer.firstName}<br>
 	 Cognome: ${customerController.customer.lastName}<br> 
+	 Username: ${customerController.customer.username}<br>
+	 eMail: ${customerController.customer.email}<br>
+	 Telefono: ${customerController.customer.phoneNumber}<br>
  </div>
 </body>
 </html>
