@@ -10,17 +10,11 @@
 </head>
 <body>
  <f:view>
+ <%@ include file="header.html" %>
   <h:form>
-   <div align="center"><h1>Ordini chiusi</h1></div>
-   <c:if test="${administratorController.administrator!=null}">
-   	<div align="center"><h:outputLink value="dashboard.jsp">Dashboard</h:outputLink></div><br>
-   </c:if>
-   <c:if test="${administratorController.administrator==null}">
-     <h:outputLink value="home.jsp">Home</h:outputLink>
-   </c:if>
-   <div align="center">
-    <table border= "1">
-     <tr><th>Azione</th> <th>Id Ordine</th> <th>Chiuso il</th> <th>Id Cliente</th></tr>
+   <div align="center"><h1>Ordini chiusi</h1>
+    <table class="table">
+     <tr><th>Azione</th> <th>Id Ordine</th> <th>Data chiusura</th> <th>Id Cliente</th></tr>
      <c:forEach var="order" items="#{orderController.orders}">
     	<tr>
     		<td><h:commandButton action="#{orderController.evadeOrder}" value="Evadi">

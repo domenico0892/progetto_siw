@@ -10,18 +10,24 @@
 </head>
  <body>
   <f:view>
+  <%@ include file="header.html" %>
    <h:form>
-    <div align="center"><h1>Cliente selezionato: ${orderController.customer.firstName} ${orderController.customer.lastName}</h1></div>
-    <div align="center"><h:outputLink value="dashboard.jsp"> Dashboard </h:outputLink></div>
-    <div align="center"><br>
-    	Id ordine selezionato: <b>${orderController.order.id}</b> <br>
-    	Id cliente: <b>${orderController.customer.id}</b> <br>
-    	Username: <b>${orderController.customer.username}</b> <br>
-    	Indirizzo: <b>${orderController.customer.address}</b> <br>
-    	Data di nascita: <b>${orderController.customer.dateOfBirth}</b> <br>
-    	Data di registrazione: <b>${orderController.customer.registrationDate}</b> <br>
-    	eMail: <b>${orderController.customer.email}</b> <br>
-    	Numero di telefono: <b>${orderController.customer.phoneNumber}</b> <br>
+    <div align="center">
+    <h1>Cliente selezionato: ${orderController.customer.firstName} ${orderController.customer.lastName}</h1>
+	<table>
+    	<tr><td>Id ordine selezionato</td><td>${orderController.order.id}</td></tr>
+    	<tr><td>Id cliente</td><td>${customerController.customer.id}</td>
+    	<tr><td>Username</td><td>${customerController.customer.username}</td></tr>
+    	<tr><td>Data di nascita</td><td>${customerController.customer.dateOfBirth}</td> </tr>
+    	<tr><td>Data di registrazione</td><td>${customerController.customer.registrationDate}</td></tr> 
+    	<tr><td>eMail</td><td>${customerController.customer.email}</td></tr> 
+    	<tr><td>Numero di telefono</td><td>${customerController.customer.phoneNumber}</td> </tr>
+    	<tr><td>Indirizzo</td><td>${customerController.customer.address.street}</td> </tr>
+    	<tr><td>Città</td><td>${customerController.customer.address.city}</td> </tr>
+    	<tr><td>Provincia</td><td>${customerController.customer.address.state}</td> </tr>
+    	<tr><td>CAP</td><td>${customerController.customer.address.zipcode}</td> </tr>
+    	<tr><td>Stato</td><td>${customerController.customer.address.country}</td> </tr>
+    	</table>
     </div>
    </h:form>
   </f:view>

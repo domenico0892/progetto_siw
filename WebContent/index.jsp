@@ -8,7 +8,7 @@
 </head>
 <body>
 <f:view>
-<%@include file="header.txt"%>
+<%@include file="header.html"%>
 <div align="center"><h1>BuyEverything</h1></div>
 <div align="center">
 <h3>Benvenuto su BuyEverything. Consulta il nostro catalogo o guarda qui sotto i nostri prodotti in vetrina</h3>

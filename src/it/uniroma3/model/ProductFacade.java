@@ -32,8 +32,8 @@ public class ProductFacade {
 	}
 
 	public Product getProductByCode(String code) {
-		Query q = this.em.createQuery("SELECT p FROM Product p WHERE p.code = :code");
+		TypedQuery<Product> q = this.em.createQuery("SELECT p FROM Product p WHERE p.code = :code", Product.class);
 		q.setParameter("code", code);
-		return (Product)q.getSingleResult();
+		return q.getSingleResult();
 	}
 }

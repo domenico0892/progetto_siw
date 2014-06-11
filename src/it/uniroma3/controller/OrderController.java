@@ -84,9 +84,16 @@ public class OrderController {
 		if (this.currentOrder == null)
 			return "index";
 		else {
-			this.orderLineFacade.createOrderLine(this.currentOrder, this.orderedQuantity, this.productFacade.getProductById(this.productId));
+			Product p = this.productFacade.getProductById(this.productId);
+			if (this.currentOrder.verificaPresenza(p)) {
+				this.message = "Attenzione, ordine già inserito!";
+				return "errorPage";
+			}
+			else {
+			this.orderLineFacade.createOrderLine(this.currentOrder, this.orderedQuantity, p);
 			this.order = this.currentOrder;
 			return "openOrderDetails";
+			}
 		}
 	}
 	
@@ -112,10 +119,8 @@ public class OrderController {
 	}
 	
 	public String listCloseOrders() {
-		try {
-			this.orders = (List<Order>) this.orderFacade.getCloseOrders();
-		} catch(Exception e) { return "dashboard"; }
-		return "allOrders";
+			this.orders = this.orderFacade.getCloseOrders();
+			return "allOrders";
 	}
 	
 	public String evadeOrder() {

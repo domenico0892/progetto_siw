@@ -10,7 +10,7 @@
 </head>
 <body>
 	<f:view>
-		<%@ include file="header.txt"%>
+		<%@ include file="header.html"%>
 		<div align="center">
 			<h1>Provider selezionato: ${providerController.provider.name}</h1>
 		</div>

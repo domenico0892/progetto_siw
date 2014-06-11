@@ -11,7 +11,7 @@
 </head>
 <body>
 	<f:view>
-		<%@ include file="header.txt"%>
+		<%@ include file="header.html"%>
 		<div align="center">
 			<h1>I miei ordini</h1>
 		</div>

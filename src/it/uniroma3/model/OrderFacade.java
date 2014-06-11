@@ -26,8 +26,7 @@ public class OrderFacade {
 	
 	public List<Order> getCloseOrders() {
 		TypedQuery<Order> q = this.em.createQuery("SELECT o FROM Order o WHERE o.status = :status", Order.class);
-		String status = "chiuso";
-		q.setParameter("status", status );
+		q.setParameter("status", "chiuso");
 		return q.getResultList();
 	}
 

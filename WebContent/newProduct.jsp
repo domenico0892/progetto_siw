@@ -34,7 +34,8 @@
     <tr><td>Description: <h:inputTextarea value="#{productController.description}" 
     				required="false" 
     				cols="20" 
-    				rows="5" /></td></tr>          
+    				rows="5" /></td></tr>
+    <tr><td>Vetrina?: <h:selectBooleanCheckbox value="#{productController.vetrina}"/>          
 	</table>
 	<div>
 		<h:commandButton value="Aggiungi"  action="#{productController.createProduct}"/>

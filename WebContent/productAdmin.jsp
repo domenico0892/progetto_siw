@@ -10,7 +10,7 @@
 </head>
 <body>
 	<f:view>
-		<%@ include file="header.txt"%>
+		<%@ include file="header.html"%>
 		<div align="center">
 			<h1>Prodotto selezionato: ${productController.product.name}</h1>
 		</div>

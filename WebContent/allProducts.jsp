@@ -9,9 +9,11 @@
 </head>
 <body>
 <f:view>
-<%@include file="header.txt"%>
- <div align="center"><h1>Catalogo prodotti</h1></div>
- <div align="center"><h3>Clicca sul nome del prodotto per visualizzarne le informazioni</h3></div>
+<%@include file="header.html"%>
+ <div align="center"><h1>Catalogo prodotti</h1><br>
+ <h2>Clicca sul nome del prodotto per visualizzarne le informazioni</h2><br>
+ <h3><c:if test="${sessionScope.currentOrder==null}">Ricorda che non stai modificando nessun ordine!</c:if></h3>
+ <h3><c:if test="${sessionScope.currentOrder!=null}">Ricorda che stai modificando l'ordine ${sessionScope.currentOrder.id}!</c:if></h3>
   <h:form>
   <br><div id="box" align="center"></div><br>
   <div align="center">
@@ -33,6 +35,7 @@
    </table>
   </div>
  </h:form>
+ </div>
 </f:view>
 </body>
 </html>

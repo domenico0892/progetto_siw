@@ -10,7 +10,12 @@
 <title>Errore!</title>
 </head>
 <body>
-<h1>${orderController.message}</h1>
-<a href="faces/index.jsp">Torna alla home</a>
+<f:view>
+<%@ include file="header.html" %>
+<div align="center">
+<h3>${orderController.message}</h3><br>
+Usa la barra di navigazione per tornare nella pagina che ti serve.
+</div>
+</f:view>
 </body>
 </html>

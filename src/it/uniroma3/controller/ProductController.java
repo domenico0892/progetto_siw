@@ -60,16 +60,14 @@ public class ProductController {
 	public String createProduct() {
 		this.prodottoPresnte = null;
 		try {
-			if (this.productFacade.getProductByCode(this.code)!=null) {
-				this.prodottoPresnte = "Con questo codice � gi� stato registrato un altro prodotto";
+				this.prodottoPresnte = "Con questo codice è già stato registrato un altro prodotto";
+				this.productFacade.getProductByCode(this.code);
 				return "newProduct";
-			}
 		} 
 		catch(Exception e) { 			
-			this.product = productFacade.createProduct(name, code, price, description, quantity, vetrina);
+			this.product = this.productFacade.createProduct(name, code, price, description, quantity, vetrina);
 			return "product";  
 		}
-		return "newProduct";
 	}
 
 	public String updateQuantity() {

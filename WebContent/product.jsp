@@ -10,7 +10,7 @@
 </head>
 <body>
 	<f:view>
-		<%@ include file="header.txt"%>
+		<%@ include file="header.html"%>
 		<div align="center">
 			<h1>Prodotto selezionato: ${productController.product.name}</h1>
 		</div>
@@ -35,7 +35,9 @@
 		<h:form>
 			<div>
 				<c:if test="${sessionScope.currentOrder!=null}">
-					<h:inputText value="#{orderController.orderedQuantity}" />
+					<h:inputText value="#{orderController.orderedQuantity}" id="q" requiredMessage="Errore!"
+						converterMessage="Errore!" validatorMessage="Errore!"><f:validateLongRange minimum="1"/>
+						</h:inputText>
 					<h:commandButton action="#{orderController.addOrderLine}">
 						<f:param name="productid" value="#{productController.product.id}" />
 					</h:commandButton>

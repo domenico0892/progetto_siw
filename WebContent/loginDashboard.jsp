@@ -7,10 +7,11 @@
  	<title>Login Amministratore</title>
  </head>
  <body>
- <div align="center"> <h1>Login Amministratore</h1> </div>
+ 
  <f:view>
+ <%@ include file="header.html" %>
+ <div align="center"> <h1>Login Amministratore</h1> </div>
   <h:form>
-  <div align="center"> <h:outputLink value="home.jsp">Home</h:outputLink></div><br>
    <div align="center">
  	Username: <h:inputText value="#{administratorController.username}"
  							required="true"

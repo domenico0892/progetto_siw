@@ -133,4 +133,11 @@ public class Order {
 			this.status = "evaso";
 			this.evasionDate = new Date();
 		}
+
+		public boolean verificaPresenza(Product p) {
+			for (OrderLine ol : this.orderLines) 
+				if (ol.getProduct().getId().equals(p.getId()))
+					return true;
+			return false;
+		}
 }
