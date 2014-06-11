@@ -24,7 +24,6 @@
 		 <td>
 		  <h:commandLink action="#{productController.getProductById}" value="#{product.name}">
 			<f:param name="id" value="#{product.id}" />
-			<f:param name="admin" value="#{sessionScope.administratorController.administrator}"/>
 		  </h:commandLink>
 		 </td>
 		 <td>${product.price}</td>

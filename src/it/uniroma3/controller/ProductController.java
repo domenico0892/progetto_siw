@@ -34,16 +34,19 @@ public class ProductController {
 	private String prodottoPresnte;
 	private Boolean vetrina;
 	private List<Provider> providers;
-	private List<Provider> providersByProducts;
+	private List<Provider> providersByProduct;
 	
-	@ManagedProperty(value="#{param.admin}")
+	@ManagedProperty(value="#{sessionScope['administratorController'].administrator}")
 	private Administrator admin;
 	
+	@ManagedProperty(value="#{param.providerid}")
+	private Long providerId;
+	
 	public String providerEditor () {
+		this.product = this.productFacade.getProductById(this.id);
 		this.providers = this.providerFacade.getAllProviders();
-		this.providersByProducts = this.providerFacade.getProvidersByProductId(id);
+		this.providersByProduct = this.product.getProviders();
 		return "providerEditor";
-		
 	}
 	
 	public String getProdottoPresnte() {
@@ -79,7 +82,10 @@ public class ProductController {
 	
 	public String listProducts() {
 		this.products = this.productFacade.listProducts();
-		return "allProducts";
+		if (this.admin==null)
+			return "allProducts";
+		else return "allProductsAdmin";
+			
 	}
 	
 	public String getProductById () {
@@ -88,6 +94,17 @@ public class ProductController {
 			return "product";
 		else
 			return "productAdmin";
+	}
+	
+	public String addProvider () {
+		Provider p = this.providerFacade.getProviderById(this.providerId);
+		Product pr = this.productFacade.getProductById(this.id);
+		pr.addProvider(p);
+		p.addProduct(pr);
+		this.productFacade.updateProduct(pr);
+		this.providerFacade.updateFacade(p);
+		
+		return this.providerEditor();
 	}
 	
 	public Long getId () {
@@ -173,13 +190,19 @@ public class ProductController {
 		this.providers = providers;
 	}
 
-	public List<Provider> getProvidersByProducts() {
-		return providersByProducts;
+	public List<Provider> getProvidersByProduct() {
+		return providersByProduct;
 	}
 
-	public void setProvidersByProducts(List<Provider> providersByProducts) {
-		this.providersByProducts = providersByProducts;
+	public void setProvidersByProduct(List<Provider> providersByProduct) {
+		this.providersByProduct = providersByProduct;
 	}
-	
-	
+
+	public Long getProviderId() {
+		return providerId;
+	}
+
+	public void setProviderId(Long providerId) {
+		this.providerId = providerId;
+	}
 }

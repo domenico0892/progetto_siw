@@ -86,7 +86,7 @@ public class OrderController {
 		else {
 			this.orderLineFacade.createOrderLine(this.currentOrder, this.orderedQuantity, this.productFacade.getProductById(this.productId));
 			this.order = this.currentOrder;
-			return "orderDetails";
+			return "openOrderDetails";
 		}
 	}
 	

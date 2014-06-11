@@ -23,9 +23,8 @@ public class ProductFacade {
 	}
 
 	public List<Product> listProducts() {
-		Query q = em.createQuery("SELECT p FROM Product p");
-		List<Product> l = (List<Product>) q.getResultList();
-		return l;
+		TypedQuery<Product> q = this.em.createQuery("SELECT p FROM Product p", Product.class);
+		return q.getResultList();
 	}
 	
 	public void updateProduct(Product p) {

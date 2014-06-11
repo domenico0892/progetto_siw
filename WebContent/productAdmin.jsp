@@ -32,9 +32,10 @@
 				<td>${productController.product.quantity} pezzi</td>
 			</tr>
 		</table>
-		<h:form>
+		
 			<div>
 		 	Modifica quantita' 
+		 	<h:form>
 		 	<h:inputText value="#{productController.quantity}" required="true"
 						requiredMessage="Quantity is mandatory"
 						converterMessage="Quantity must be a number" id="quantity" />
@@ -43,11 +44,15 @@
 						action="#{productController.updateQuantity}">
 						<f:param name="id" value="#{productController.product.id}" />
 					</h:commandButton>
+					</h:form>
 			</div>
 			<div>
-			<h:commandLink action="#{productController.providerEditor}" value="Mostra e modifica i fornitori" />
+			<h:form>
+			<h:commandLink action="#{productController.providerEditor}" value="Mostra e modifica i fornitori">
+			<f:param name="id" value="#{productController.id}" />
+			</h:commandLink>
+			</h:form>
 			</div>
-		</h:form>
 	</f:view>
 </body>
 </html>

@@ -1,7 +1,8 @@
 package it.uniroma3.model;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.*;
 
@@ -23,8 +24,8 @@ public class OrderFacade {
 		return this.em.find (Order.class, id);
 	}
 	
-	public Collection<Order> getCloseOrders() {
-		Query q = this.em.createQuery("SELECT o FROM Order o WHERE o.status = :status");
+	public List<Order> getCloseOrders() {
+		TypedQuery<Order> q = this.em.createQuery("SELECT o FROM Order o WHERE o.status = :status", Order.class);
 		String status = "chiuso";
 		q.setParameter("status", status );
 		return q.getResultList();

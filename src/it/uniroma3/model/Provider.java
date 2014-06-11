@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +36,7 @@ public class Provider {
 	@JoinColumn (name="address_fk")
 	private Address address;
 	
-	@ManyToMany
+	@ManyToMany (fetch=FetchType.EAGER)
 	private List<Product> products;
 	
 	public Provider () {}
@@ -94,5 +95,9 @@ public class Provider {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public void addProduct(Product pr) {
+		this.products.add(pr);
 	}
 }
