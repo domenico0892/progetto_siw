@@ -7,11 +7,14 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"></li>
+        <c:if test="administratorController.administrator!=null">
+        	<li><h:commandLink action="#{administratorController.returnDashboard}" value="Dashboard"/></li>
+        </c:if>
         <li><h:commandLink action="#{homeController.home}" value="Home"/></li>
-        <c:if test="${customerController.customer==null}">
+        <c:if test="${customerController.customer==null} && ${administratorController.administrator!=null}">
 			<li><h:outputLink value="faces/login.jsp">Accedi</h:outputLink></li>
 		</c:if>
-		<c:if test="${customerController.customer!=null}">
+		<c:if test="${customerController.customer!=null && administratorController.administrator!=null}">
 			<li><h:commandLink action="#{customerController.customerProfile}" value="Il mio profilo"/></li>
 			<li><h:commandLink action="#{customerController.logout}"> Logout</h:commandLink></li>
 		</c:if>

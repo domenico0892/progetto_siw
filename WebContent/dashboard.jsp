@@ -8,6 +8,8 @@
  <body>
   <f:view>
    <h:form>
+   <%@include file="header.txt"%>
+	<div align="center"><h1>BuyEverything Dashboard</h1></div>
      <div align="center">
  	 <h2>Pannello amministrazione ${administratorController.administrator.firstName} ${administratorController.administrator.lastName}</h2>
  		<a href="#" onclick="inserisciCliente();">Inserisci nuovo cliente</a> 

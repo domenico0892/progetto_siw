@@ -36,7 +36,9 @@ public class AdministratorController {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "index";
 	}
-	
+	public String returnDashboard() {
+		return "dashboard";
+	}
 	public String getUsername() {
 		return username;
 	}
