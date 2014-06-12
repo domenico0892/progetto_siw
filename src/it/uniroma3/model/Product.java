@@ -31,7 +31,7 @@ public class Product {
 	@Column(length = 2000)
 	private String description;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String code;
 	
 	@ManyToMany (mappedBy="products", fetch=FetchType.EAGER)

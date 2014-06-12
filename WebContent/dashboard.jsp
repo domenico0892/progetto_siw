@@ -8,7 +8,7 @@
  <body>
   <f:view>
    
-   <%@include file="header.txt"%>
+   <%@include file="header.html"%>
 	<div align="center"><h1>BuyEverything Dashboard</h1></div>
      <div align="center">
  	 <h2>Pannello amministrazione ${administratorController.administrator.firstName} ${administratorController.administrator.lastName}</h2>

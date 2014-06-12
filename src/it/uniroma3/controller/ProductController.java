@@ -31,7 +31,7 @@ public class ProductController {
 	private Integer quantity;
 	private Product product;
 	private List<Product> products;
-	private String prodottoPresnte;
+	private String message;
 	private Boolean vetrina;
 	private List<Provider> providers;
 	private List<Provider> providersByProduct;
@@ -49,24 +49,22 @@ public class ProductController {
 		return "providerEditor";
 	}
 	
-	public String getProdottoPresnte() {
-		return prodottoPresnte;
+	public String getMessage() {
+		return this.message;
 	}
 
-	public void setProdottoPresnte(String prodottoPresnte) {
-		this.prodottoPresnte = prodottoPresnte;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public String createProduct() {
-		this.prodottoPresnte = null;
 		try {
-				this.prodottoPresnte = "Con questo codice è già stato registrato un altro prodotto";
-				this.productFacade.getProductByCode(this.code);
-				return "newProduct";
+			this.product = this.productFacade.createProduct(name, code, price, description, quantity, vetrina);
+			return "product";
 		} 
 		catch(Exception e) { 			
-			this.product = this.productFacade.createProduct(name, code, price, description, quantity, vetrina);
-			return "product";  
+			this.message = "Prodotto già esistente";
+			return "newProduct";  
 		}
 	}
 

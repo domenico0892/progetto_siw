@@ -55,9 +55,16 @@ public class OrderController {
 	@ManagedProperty(value="#{param.selectedorder}")
 	private Long selectedOrder;
 	
-	@ManagedProperty(value="#{param.selectedorderline}")
+	@ManagedProperty(value="#{param.orderline}")
 	private Long selectedOrderLine;
 	
+	public String modifyQuantityOrderLine () {
+		OrderLine ol = this.orderLineFacade.getOrderLineByOrderLineId(this.selectedOrderLine);
+		ol.setQuantity(this.orderedQuantity);
+		this.orderLineFacade.updateOrderLine(ol);
+		this.order = this.orderFacade.getOrderById(this.selectedOrder);
+		return "openOrderDetails";
+	}
 	
 	public String newOrder () {
 		Order o = this.orderFacade.createOrder(new Date(), this.customer);
@@ -86,7 +93,7 @@ public class OrderController {
 		else {
 			Product p = this.productFacade.getProductById(this.productId);
 			if (this.currentOrder.verificaPresenza(p)) {
-				this.message = "Attenzione, ordine già inserito!";
+				this.message = "Attenzione, prodotto già inserito!";
 				return "errorPage";
 			}
 			else {

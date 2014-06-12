@@ -21,6 +21,11 @@ public class OrderLineFacade {
 	public void deleteOrderLine (Long id) {
 		this.em.remove(this.getOrderLineByOrderLineId(id));
 	}
+	
+	public void updateOrderLine (OrderLine o) {
+		this.em.merge(o);
+	}
+	
 
 	public OrderLine getOrderLineByOrderLineId(Long id) {
 		return this.em.find(OrderLine.class, id);
