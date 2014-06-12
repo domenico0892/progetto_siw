@@ -40,7 +40,7 @@
 									</h:commandLink></td>
 								<td>${order.creationDate}</td>
 								<td><h:commandButton
-										action="#{orderController.selectOrder}" value="Modifica">
+										action="#{orderController.selectOrder}" value="Aggiungi prodotti">
 										<f:param name="selectedorder" value="#{order.id}" />
 									</h:commandButton> <h:commandButton action="#{orderController.closeOrder}"
 										value="Chiudi">

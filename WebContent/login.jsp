@@ -25,6 +25,11 @@
      <h:commandButton styleClass="btn btn-warning" value="Login!"  action="#{customerController.login}"/>
     <h:message for="username"/>
     <h:message for="password"/>
+    <p align="center"><b>${customerController.message}</b></p><br>
+    <div align="center">
+    <h3>Non sei ancora registrato? <h:outputLink value="faces/newCustomer.jsp">Clicca qui!</h:outputLink></h3>
+    </div>
+    
     </div>
 </h:form>
 </f:view>

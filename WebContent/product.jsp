@@ -27,10 +27,6 @@
 				<td>Descrizione</td>
 				<td>${productController.product.description}</td>
 			</tr>
-			<tr>
-				<td>Quantita</td>
-				<td>${productController.product.quantity} pezzi</td>
-			</tr>
 		</table>
 		<h:form>
 			<div>

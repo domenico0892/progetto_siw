@@ -19,7 +19,7 @@
   <div align="center">
    <table class="table">
 	<tr>
-		<th>Nome</th><th>Prezzo</th><th>Quantita'</th><th>Codice prodotto</th>
+		<th>Nome</th><th>Prezzo</th><th>Codice prodotto</th>
 	</tr>
 	<c:forEach var="product" items="#{productController.products}">
 		<tr>
@@ -29,7 +29,6 @@
 		  </h:commandLink>
 		 </td>
 		 <td>${product.price}</td>
-		  <td>${product.quantity}</td>
 		  <td>${product.code}</td>
 	</c:forEach>
    </table>

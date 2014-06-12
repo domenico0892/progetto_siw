@@ -14,7 +14,7 @@
 		<h:form>
 			<!-- Dati utente -->
 			<p align="center"><b>${customerController.message}</b></p>
-			<table align="center" border="1">
+			<table align="center" class="table">
 				<tr>
 					<td><h3>Dati del nuovo cliente</h3></td>
 				</tr>

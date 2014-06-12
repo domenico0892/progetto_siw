@@ -120,7 +120,7 @@ public class OrderController {
 	public String getCustomerByIdOrder() {
 		try {
 		    this.order = this.orderFacade.getOrderById(this.id);
-			this.customer = this.customerFacade.getCustomerById(this.order.getCustomer().getId());
+			this.customer = this.order.getCustomer();
 		} catch(Exception e) { return "dashboard"; }
 		return "infoCustomer";
 	}

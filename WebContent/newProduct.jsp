@@ -11,6 +11,9 @@
 <body>
 <f:view>
 <h:form>
+	<c:if test="${sessionScope.administratorController.administrator==null}">
+	<%@include file="header.html" %>
+	</c:if>
 	<p align="center"><b>${productController.message}</b></p>
     <table class="table" border="1">
     <tr><td>Name: <h:inputText value="#{productController.name}" 

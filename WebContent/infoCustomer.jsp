@@ -16,17 +16,17 @@
     <h1>Cliente selezionato: ${orderController.customer.firstName} ${orderController.customer.lastName}</h1>
 	<table>
     	<tr><td>Id ordine selezionato</td><td>${orderController.order.id}</td></tr>
-    	<tr><td>Id cliente</td><td>${customerController.customer.id}</td>
-    	<tr><td>Username</td><td>${customerController.customer.username}</td></tr>
-    	<tr><td>Data di nascita</td><td>${customerController.customer.dateOfBirth}</td> </tr>
-    	<tr><td>Data di registrazione</td><td>${customerController.customer.registrationDate}</td></tr> 
-    	<tr><td>eMail</td><td>${customerController.customer.email}</td></tr> 
-    	<tr><td>Numero di telefono</td><td>${customerController.customer.phoneNumber}</td> </tr>
-    	<tr><td>Indirizzo</td><td>${customerController.customer.address.street}</td> </tr>
-    	<tr><td>Città</td><td>${customerController.customer.address.city}</td> </tr>
-    	<tr><td>Provincia</td><td>${customerController.customer.address.state}</td> </tr>
-    	<tr><td>CAP</td><td>${customerController.customer.address.zipcode}</td> </tr>
-    	<tr><td>Stato</td><td>${customerController.customer.address.country}</td> </tr>
+    	<tr><td>Id cliente</td><td>${orderController.customer.id}</td>
+    	<tr><td>Username</td><td>${orderController.customer.username}</td></tr>
+    	<tr><td>Data di nascita</td><td>${orderController.customer.dateOfBirth}</td> </tr>
+    	<tr><td>Data di registrazione</td><td>${orderController.customer.registrationDate}</td></tr> 
+    	<tr><td>eMail</td><td>${orderController.customer.email}</td></tr> 
+    	<tr><td>Numero di telefono</td><td>${orderController.customer.phoneNumber}</td> </tr>
+    	<tr><td>Indirizzo</td><td>${orderController.customer.address.street}</td> </tr>
+    	<tr><td>Città</td><td>${orderController.customer.address.city}</td> </tr>
+    	<tr><td>Provincia</td><td>${orderController.customer.address.state}</td> </tr>
+    	<tr><td>CAP</td><td>${orderController.customer.address.zipcode}</td> </tr>
+    	<tr><td>Stato</td><td>${orderController.customer.address.country}</td> </tr>
     	</table>
     </div>
    </h:form>

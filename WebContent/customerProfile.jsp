@@ -16,8 +16,7 @@
    <h:form>
    <table class="table">
        	<tr><td>Id</td><td>${customerController.customer.id}</td>
-    	<tr><td>Username</td><td>${customerController.customer.username}</td></tr>
-    	<tr><td>Indirizzo</td><td>${customerController.customer.address}</td></tr> 
+    	<tr><td>Username</td><td>${customerController.customer.username}</td></tr> 
     	<tr><td>Data di nascita</td><td>${customerController.customer.dateOfBirth}</td> </tr>
     	<tr><td>Data di registrazione</td><td>${customerController.customer.registrationDate}</td></tr> 
     	<tr><td>eMail</td><td>${customerController.customer.email}</td></tr> 

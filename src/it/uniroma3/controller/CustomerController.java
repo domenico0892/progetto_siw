@@ -54,13 +54,17 @@ public class CustomerController {
 				this.customer = c;
 				return "index";
 			}
-			else 
+			else {
+				this.message = "Password errata";
 				return "login";
 		}
+		}
 		catch (Exception e) {
+			this.message = "Username errato";
 			return "login";
 		}
 	}
+		
 	
 	public String logout () {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
