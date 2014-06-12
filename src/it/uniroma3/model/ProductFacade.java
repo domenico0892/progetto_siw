@@ -13,7 +13,7 @@ public class ProductFacade {
 
 	public Product createProduct(String name, String code, Float price, String description, Integer quantity, Boolean vetrina) {
 		Product product = new Product(name, price, description, code, quantity, vetrina);
-		em.persist(product);
+		this.em.persist(product);
 		return product;
 	}
 
@@ -35,5 +35,9 @@ public class ProductFacade {
 		TypedQuery<Product> q = this.em.createQuery("SELECT p FROM Product p WHERE p.code = :code", Product.class);
 		q.setParameter("code", code);
 		return q.getSingleResult();
+	}
+
+	public void deleteProduct(Product p) {
+		this.em.remove(p);
 	}
 }

@@ -67,13 +67,21 @@ public class ProductController {
 			return "newProduct";  
 		}
 	}
-
-	public String updateQuantity() {
+	
+	public String updateProduct() {
 		Product p = this.productFacade.getProductById(this.id);
+		p.setPrice(this.price);
+		p.setDescription(this.description);
 		p.setQuantity(this.quantity);
 		this.productFacade.updateProduct(p);
 		this.products = this.productFacade.listProducts();
-		return "allProducts";
+		return "allProductsAdmin";
+	}
+	
+	public String deleteProduct() {
+		this.productFacade.deleteProduct(this.productFacade.getProductById(this.id));
+		this.products = this.productFacade.listProducts();
+		return "allProductsAdmin";
 	}
 	
 	public String listProducts() {

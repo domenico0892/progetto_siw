@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<td>Prezzo</td>
-				<td>${productController.product.price} euro</td>
+				<td>${productController.product.price}euro</td>
 			</tr>
 			<tr>
 				<td>Descrizione</td>
@@ -29,30 +29,41 @@
 			</tr>
 			<tr>
 				<td>Quantita</td>
-				<td>${productController.product.quantity} pezzi</td>
+				<td>${productController.product.quantity}pezzi</td>
 			</tr>
 		</table>
-		
-			<div>
-		 	Modifica quantita' 
-		 	<h:form>
-		 	<h:inputText value="#{productController.quantity}" required="true"
-						requiredMessage="Quantity is mandatory"
-						converterMessage="Quantity must be a number" id="quantity" />
-					<h:message for="quantity" />
-					<h:commandButton value="Conferma"
-						action="#{productController.updateQuantity}">
-						<f:param name="id" value="#{productController.product.id}" />
-					</h:commandButton>
-					</h:form>
-			</div>
-			<div>
+		<h:form>
+			<table class="table" border="1">
+				<tr>
+					<td><h3>Modifica dettagli prodotto</h3></td>
+				</tr>
+				<tr>
+					<td>Prezzo <h:inputText value="#{productController.price}"/></td>
+				</tr>
+				<tr>
+					<td>Quantita' <h:inputText value="#{productController.quantity}"/></tr>
+				<tr>
+					<td>Descrizione <h:inputText value="#{productController.description}"/></td></tr>
+				<tr>
+					<td><h:commandButton value="Conferma"
+							action="#{productController.updateProduct}">
+							<f:param name="id" value="#{productController.product.id}" />
+						</h:commandButton></td>
+				</tr>
+			</table>
+		</h:form>
+		<div align="center">
 			<h:form>
-			<h:commandLink action="#{productController.providerEditor}" value="Mostra e modifica i fornitori">
-			<f:param name="id" value="#{productController.id}" />
-			</h:commandLink>
+				<h:commandLink action="#{productController.providerEditor}"
+					value="Mostra e modifica i fornitori">
+					<f:param name="id" value="#{productController.id}" />
+				</h:commandLink>
+				
+				<h:commandLink action="#{productController.deleteProduct}" value="Elimina prodotto">
+				 <f:param name="id" value="#{productController.id}" />
+				</h:commandLink>
 			</h:form>
-			</div>
+		</div>
 	</f:view>
 </body>
 </html>
