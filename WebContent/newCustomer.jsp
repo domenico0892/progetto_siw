@@ -13,7 +13,8 @@
 	<f:view>
 		<h:form>
 			<!-- Dati utente -->
-			<table align="center" border="1">
+			<p align="center"><b>${customerController.message}</b></p>
+			<table align="center" class="table">
 				<tr>
 					<td><h3>Dati del nuovo cliente</h3></td>
 				</tr>

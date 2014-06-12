@@ -55,9 +55,16 @@ public class OrderController {
 	@ManagedProperty(value="#{param.selectedorder}")
 	private Long selectedOrder;
 	
-	@ManagedProperty(value="#{param.selectedorderline}")
+	@ManagedProperty(value="#{param.orderline}")
 	private Long selectedOrderLine;
 	
+	public String modifyQuantityOrderLine () {
+		OrderLine ol = this.orderLineFacade.getOrderLineByOrderLineId(this.selectedOrderLine);
+		ol.setQuantity(this.orderedQuantity);
+		this.orderLineFacade.updateOrderLine(ol);
+		this.order = this.orderFacade.getOrderById(this.selectedOrder);
+		return "openOrderDetails";
+	}
 	
 	public String newOrder () {
 		Order o = this.orderFacade.createOrder(new Date(), this.customer);
@@ -84,9 +91,16 @@ public class OrderController {
 		if (this.currentOrder == null)
 			return "index";
 		else {
-			this.orderLineFacade.createOrderLine(this.currentOrder, this.orderedQuantity, this.productFacade.getProductById(this.productId));
+			Product p = this.productFacade.getProductById(this.productId);
+			if (this.currentOrder.verificaPresenza(p)) {
+				this.message = "Attenzione, prodotto già inserito!";
+				return "errorPage";
+			}
+			else {
+			this.orderLineFacade.createOrderLine(this.currentOrder, this.orderedQuantity, p);
 			this.order = this.currentOrder;
-			return "orderDetails";
+			return "openOrderDetails";
+			}
 		}
 	}
 	
@@ -106,16 +120,14 @@ public class OrderController {
 	public String getCustomerByIdOrder() {
 		try {
 		    this.order = this.orderFacade.getOrderById(this.id);
-			this.customer = this.customerFacade.getCustomerById(this.order.getCustomer().getId());
+			this.customer = this.order.getCustomer();
 		} catch(Exception e) { return "dashboard"; }
 		return "infoCustomer";
 	}
 	
 	public String listCloseOrders() {
-		try {
-			this.orders = (List<Order>) this.orderFacade.getCloseOrders();
-		} catch(Exception e) { return "dashboard"; }
-		return "allOrders";
+			this.orders = this.orderFacade.getCloseOrders();
+			return "allOrders";
 	}
 	
 	public String evadeOrder() {

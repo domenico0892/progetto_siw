@@ -1,9 +1,11 @@
 package it.uniroma3.controller;
 
 import java.util.Date;
+
 import it.uniroma3.model.Address;
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -29,14 +31,20 @@ public class CustomerController {
 	private String zipcode;
 	private Date dateOfBirth;
 	private Date registrationDate;
-	private Customer customer;	
+	private Customer customer;
+	private String message;	
 	
 	public String createCustomer() {
 		this.address = new Address(this.street, this.city, this.state, this.zipcode, this.country);
+		try {
 		this.customer = this.customerFacade.createCustomer(this.username, this.password, 
 				 this.firstName, this.lastName, this.email, this.phoneNumber, 
 				 this.dateOfBirth, this.address, new Date());
 		return "customerProfile";
+		} catch (Exception e) {
+			this.message = "Username già esistente!";
+			return "newCustomer.jsp";
+		}
 	}
 
 	public String login () {
@@ -46,13 +54,17 @@ public class CustomerController {
 				this.customer = c;
 				return "index";
 			}
-			else 
+			else {
+				this.message = "Password errata";
 				return "login";
 		}
+		}
 		catch (Exception e) {
+			this.message = "Username errato";
 			return "login";
 		}
 	}
+		
 	
 	public String logout () {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
@@ -190,4 +202,14 @@ public class CustomerController {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	
 }

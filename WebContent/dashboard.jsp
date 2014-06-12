@@ -7,19 +7,21 @@
  <!-- "administrator" è l'amministratore corrente (autenticato) -->
  <body>
   <f:view>
-   <h:form>
-   <%@include file="header.txt"%>
+   
+   <%@include file="header.html"%>
 	<div align="center"><h1>BuyEverything Dashboard</h1></div>
      <div align="center">
  	 <h2>Pannello amministrazione ${administratorController.administrator.firstName} ${administratorController.administrator.lastName}</h2>
  		<a href="#" onclick="inserisciCliente();">Inserisci nuovo cliente</a> 
  		<a href="#" onclick="inserisciProdotto();">Inserisci prodotto</a> 
   		<a href="#" onclick="cercaClientePerOrdine();">Ricerca cliente</a> 
+  		<h:form>
   		<h:commandLink action="#{orderController.listCloseOrders}">Visualizza ordini </h:commandLink>
   		<h:commandLink action="#{productController.listProducts}">Visualizza prodotti </h:commandLink>
   		<h:commandLink action="#{administratorController.logOut}">Log out </h:commandLink>
-  	 </div>
   	</h:form>
+  	 </div>
+  	
    </f:view>
    	<!-- Utilizzo AJAX Asynchronous JavaScript and XML, API XMLHttp-->
    	<script>

@@ -1,8 +1,10 @@
 package it.uniroma3.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,10 +31,10 @@ public class Product {
 	@Column(length = 2000)
 	private String description;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String code;
 	
-	@ManyToMany (mappedBy="products")
+	@ManyToMany (mappedBy="products", fetch=FetchType.EAGER)
 	private List<Provider> providers;
 	
 	@Column
@@ -41,6 +43,7 @@ public class Product {
 	private boolean vetrina;
 	
 	public Product() {
+		this.providers = new ArrayList<Provider>();
 	}
 
 	public Product (String name, Float price, String description, String code, Integer quantity, Boolean vetrina) {
@@ -127,5 +130,9 @@ public class Product {
 	
 	public void addProvider (Provider p) {
 		this.providers.add(p);
+	}
+	
+	public List<Provider> getProviders () {
+		return this.providers;
 	}
 }

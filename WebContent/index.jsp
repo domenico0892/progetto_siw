@@ -8,7 +8,7 @@
 </head>
 <body>
 <f:view>
-<%@include file="header.txt"%>
+<%@include file="header.html"%>
 <div align="center"><h1>BuyEverything</h1></div>
 <div align="center">
 <h3>Benvenuto su BuyEverything. Consulta il nostro catalogo o guarda qui sotto i nostri prodotti in vetrina</h3>
@@ -17,7 +17,7 @@
 <h:form>
 <table class="table">
 	<tr>
-		<th>Nome</th><th>Prezzo</th><th>Quantita'</th><th>Codice prodotto</th>
+		<th>Nome</th><th>Prezzo</th><th>Codice prodotto</th>
 	</tr>
 	<c:forEach var="product" items="#{homeController.products}">
 	<c:if test="${product.vetrina==true}">
@@ -28,7 +28,6 @@
 		  </h:commandLink>
 		 </td>
 		 <td>${product.price}</td>
-		  <td>${product.quantity}</td>
 		  <td>${product.code}</td>
 		  </c:if>
 	</c:forEach>

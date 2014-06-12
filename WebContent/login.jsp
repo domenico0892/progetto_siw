@@ -9,7 +9,7 @@
 </head>
 <body>
 <f:view>
-<%@ include file="header.txt" %>
+<%@ include file="header.html" %>
 <div align="center"><h1>Login</h1></div>
 <h:form>
 <div align="center">
@@ -21,11 +21,15 @@
     <tr><td>Password</td><td><h:inputSecret value="#{customerController.password}" 
     	               required="true"
                      requiredMessage="Password obbligatoria!"
-                     id="password"/></td></tr>
-    <tr align="center"><td><h:commandButton styleClass="btn btn-warning" value="Login!"  action="#{customerController.login}"/></td></tr>
-    </table>
+                     id="password"/></td></tr></table><br>
+     <h:commandButton styleClass="btn btn-warning" value="Login!"  action="#{customerController.login}"/>
     <h:message for="username"/>
     <h:message for="password"/>
+    <p align="center"><b>${customerController.message}</b></p><br>
+    <div align="center">
+    <h3>Non sei ancora registrato? <h:outputLink value="faces/newCustomer.jsp">Clicca qui!</h:outputLink></h3>
+    </div>
+    
     </div>
 </h:form>
 </f:view>

@@ -11,7 +11,10 @@
 <body>
 <f:view>
 <h:form>
-	<div align="center"><h3>${productController.prodottoPresnte}</h3><br></div>
+	<c:if test="${sessionScope.administratorController.administrator==null}">
+	<%@include file="header.html" %>
+	</c:if>
+	<p align="center"><b>${productController.message}</b></p>
     <table class="table" border="1">
     <tr><td>Name: <h:inputText value="#{productController.name}" 
                      required="true"
@@ -34,7 +37,8 @@
     <tr><td>Description: <h:inputTextarea value="#{productController.description}" 
     				required="false" 
     				cols="20" 
-    				rows="5" /></td></tr>          
+    				rows="5" /></td></tr>
+    <tr><td>Vetrina?: <h:selectBooleanCheckbox value="#{productController.vetrina}"/>          
 	</table>
 	<div>
 		<h:commandButton value="Aggiungi"  action="#{productController.createProduct}"/>

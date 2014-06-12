@@ -23,9 +23,8 @@ public class ProductFacade {
 	}
 
 	public List<Product> listProducts() {
-		Query q = em.createQuery("SELECT p FROM Product p");
-		List<Product> l = (List<Product>) q.getResultList();
-		return l;
+		TypedQuery<Product> q = this.em.createQuery("SELECT p FROM Product p", Product.class);
+		return q.getResultList();
 	}
 	
 	public void updateProduct(Product p) {
@@ -33,8 +32,8 @@ public class ProductFacade {
 	}
 
 	public Product getProductByCode(String code) {
-		Query q = this.em.createQuery("SELECT p FROM Product p WHERE p.code = :code");
+		TypedQuery<Product> q = this.em.createQuery("SELECT p FROM Product p WHERE p.code = :code", Product.class);
 		q.setParameter("code", code);
-		return (Product)q.getSingleResult();
+		return q.getSingleResult();
 	}
 }

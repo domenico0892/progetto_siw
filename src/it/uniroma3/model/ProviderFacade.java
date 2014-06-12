@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 @Stateless(name="providerFacade")
 public class ProviderFacade {
@@ -19,18 +19,20 @@ public class ProviderFacade {
 		return p;
 	}
 	
+	/*public List<Provider> getAllProviders () {
+		Query q = this.em.createQuery("SELECT p FROM Provider p");
+		return (List<Provider>) q.getResultList();
+	}*/
+	
 	public List<Provider> getAllProviders () {
-		Query q = this.em.createQuery("SELECT p FROM Provider");
-		return (List<Provider>) q.getResultList();
+		TypedQuery<Provider> q = this.em.createQuery("SELECT p FROM Provider p", Provider.class);
+		return  q.getResultList();
 	}
-	
-	public List<Provider> getProvidersByProductId (Long id) {
-		Query q = this.em.createQuery("SELECT p FROM provider_products WHERE p.products = :id");
-		q.setParameter("id", id);
-		return (List<Provider>) q.getResultList();
-	}
-	
 	public Provider getProviderById (Long id) {
 		return this.em.find(Provider.class, id);
+	}
+
+	public void updateFacade(Provider p) {
+		this.em.merge(p);
 	}
 }
