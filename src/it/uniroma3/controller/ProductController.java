@@ -63,7 +63,7 @@ public class ProductController {
 			return "product";
 		} 
 		catch(Exception e) { 			
-			this.message = "Prodotto già esistente";
+			this.message = "Prodotto gia' esistente";
 			return "newProduct";  
 		}
 	}
@@ -96,8 +96,12 @@ public class ProductController {
 		this.product = this.productFacade.getProductById(this.id);
 		if (this.admin==null)
 			return "product";
-		else
+		else {
+			this.price = this.product.getPrice();
+			this.description = this.product.getDescription();
+			this.quantity = this.product.getQuantity();
 			return "productAdmin";
+		}
 	}
 	
 	public String addProvider () {
@@ -106,8 +110,7 @@ public class ProductController {
 		pr.addProvider(p);
 		p.addProduct(pr);
 		this.productFacade.updateProduct(pr);
-		this.providerFacade.updateFacade(p);
-		
+		this.providerFacade.updateFacade(p);	
 		return this.providerEditor();
 	}
 	
