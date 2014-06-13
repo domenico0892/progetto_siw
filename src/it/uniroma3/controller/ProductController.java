@@ -79,7 +79,7 @@ public class ProductController {
 	}
 	
 	public String deleteProduct() {
-		this.productFacade.deleteProduct(this.productFacade.getProductById(this.id));
+		this.productFacade.deleteProduct(this.id);
 		this.products = this.productFacade.listProducts();
 		return "allProductsAdmin";
 	}

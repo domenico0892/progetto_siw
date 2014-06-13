@@ -37,7 +37,8 @@ public class ProductFacade {
 		return q.getSingleResult();
 	}
 
-	public void deleteProduct(Product p) {
+	public void deleteProduct(Long id) {
+		Product p = this.getProductById(id);
 		this.em.remove(p);
 	}
 }
