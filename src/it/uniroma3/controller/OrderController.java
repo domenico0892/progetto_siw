@@ -62,7 +62,7 @@ public class OrderController {
 	
 	public String modifyQuantityOrderLine () {
 		OrderLine ol = this.orderLineFacade.getOrderLineByOrderLineId(this.selectedOrderLine);
-		Integer q = this.validaQuantità(this.orderedQuantity);
+		Integer q = this.validaQuantita(this.orderedQuantity);
 		if (q>0) {
 			ol.setQuantity(q);
 			this.orderLineFacade.updateOrderLine(ol);
@@ -106,7 +106,7 @@ public class OrderController {
 				return "errorPage";
 			}
 			else {
-				Integer q = this.validaQuantità(this.orderedQuantity);
+				Integer q = this.validaQuantita(this.orderedQuantity);
 				if (q>0) {
 					this.orderLineFacade.createOrderLine(this.currentOrder, q, p);
 					this.order = this.currentOrder;
@@ -123,7 +123,7 @@ public class OrderController {
 	/* Validazione "a mano" del campo quantità inserita, poichè la validazione cancellava gli altri
 	 * campi della pagina
 	 */
-	private Integer validaQuantità(String n) {
+	private Integer validaQuantita(String n) {
 		try {
 			Integer i = Integer.parseInt(n);
 			return i;
