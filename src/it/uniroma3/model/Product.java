@@ -135,4 +135,11 @@ public class Product {
 	public List<Provider> getProviders () {
 		return this.providers;
 	}
+	
+	public boolean verificaPresenzaProvider (Provider p) {
+		for (Provider i : this.providers)
+			if (i.getId().equals(p.getId()))
+				return true;
+		return false;
+	}
 }

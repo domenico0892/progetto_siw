@@ -8,8 +8,10 @@ import it.uniroma3.model.OrderLine;
 import it.uniroma3.model.OrderLineFacade;
 import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
+
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -39,7 +41,7 @@ public class OrderController {
 	private Date evasionDate;
 	private String status;
 	private List<Order> orders;
-	private Integer orderedQuantity;
+	private String orderedQuantity;
 	private Order order;
 	private String message;
 	
@@ -60,10 +62,17 @@ public class OrderController {
 	
 	public String modifyQuantityOrderLine () {
 		OrderLine ol = this.orderLineFacade.getOrderLineByOrderLineId(this.selectedOrderLine);
-		ol.setQuantity(this.orderedQuantity);
-		this.orderLineFacade.updateOrderLine(ol);
-		this.order = this.orderFacade.getOrderById(this.selectedOrder);
-		return "openOrderDetails";
+		Integer q = this.validaQuantità(this.orderedQuantity);
+		if (q>0) {
+			ol.setQuantity(q);
+			this.orderLineFacade.updateOrderLine(ol);
+			this.order = this.orderFacade.getOrderById(this.selectedOrder);
+			return "openOrderDetails";
+		}
+		else {
+			this.message = "La quantita' dev'essere un numero maggiore di zero!";
+			return "errorPage";
+		}
 	}
 	
 	public String newOrder () {
@@ -97,13 +106,33 @@ public class OrderController {
 				return "errorPage";
 			}
 			else {
-			this.orderLineFacade.createOrderLine(this.currentOrder, this.orderedQuantity, p);
-			this.order = this.currentOrder;
-			return "openOrderDetails";
+				Integer q = this.validaQuantità(this.orderedQuantity);
+				if (q>0) {
+					this.orderLineFacade.createOrderLine(this.currentOrder, q, p);
+					this.order = this.currentOrder;
+					return "openOrderDetails";
+				}
+				else {
+					this.message = "La quantita' dev'essere un numero maggiore di zero!";
+					return "errorPage";
+				}
+					
 			}
 		}
 	}
-	
+	/* Validazione "a mano" del campo quantità inserita, poichè la validazione cancellava gli altri
+	 * campi della pagina
+	 */
+	private Integer validaQuantità(String n) {
+		try {
+			Integer i = Integer.parseInt(n);
+			return i;
+		}
+		catch(Exception e) { 
+			return 0;
+		}
+	}
+
 	public String closeOrder () {
 		for (Order o : this.customer.getOrders())
 			if (o.getId().equals(this.selectedOrder)) {
@@ -222,11 +251,11 @@ public class OrderController {
 		this.productId = productId;
 	}
 
-	public Integer getOrderedQuantity() {
+	public String getOrderedQuantity() {
 		return orderedQuantity;
 	}
 
-	public void setOrderedQuantity(Integer orderedQuantity) {
+	public void setOrderedQuantity(String orderedQuantity) {
 		this.orderedQuantity = orderedQuantity;
 	}
 

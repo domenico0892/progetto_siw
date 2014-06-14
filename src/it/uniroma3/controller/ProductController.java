@@ -107,10 +107,12 @@ public class ProductController {
 	public String addProvider () {
 		Provider p = this.providerFacade.getProviderById(this.providerId);
 		Product pr = this.productFacade.getProductById(this.id);
-		pr.addProvider(p);
-		p.addProduct(pr);
-		this.productFacade.updateProduct(pr);
-		this.providerFacade.updateFacade(p);	
+		if (!pr.verificaPresenzaProvider(p)) {
+			pr.addProvider(p);
+			p.addProduct(pr);
+			this.productFacade.updateProduct(pr);
+			this.providerFacade.updateFacade(p);	
+		}
 		return this.providerEditor();
 	}
 	

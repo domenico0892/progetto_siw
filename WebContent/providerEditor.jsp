@@ -44,16 +44,11 @@
 					<tr>
 						<th>Codice</th>
 						<th>Nome</th>
-						<th>Azioni</th>
 					</tr>
 					<c:forEach var="provider"
 						items="${productController.providersByProduct}">
 						<tr>
-							<td><h:commandLink
-									action="#{providerController.getProviderDetails}"
-									value="#{provider.id}">
-									<f:param name="id" value="#{provider.id}" />
-								</h:commandLink></td>
+							<td>${provider.id}</td>
 							<td>${provider.name}</td>
 						</tr>
 					</c:forEach>

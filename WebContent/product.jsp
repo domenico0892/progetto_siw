@@ -29,11 +29,9 @@
 			</tr>
 		</table>
 		<h:form>
-			<div>
+			<div align="center"> Aggiungi questo prodotto all'ordine, inserendo la quantità! <br>
 				<c:if test="${sessionScope.currentOrder!=null}">
-					<h:inputText value="#{orderController.orderedQuantity}" id="q" requiredMessage="Errore!"
-						converterMessage="Errore!" validatorMessage="Errore!"><f:validateLongRange minimum="1"/>
-						</h:inputText>
+					<h:inputText value="#{orderController.orderedQuantity}" />
 					<h:commandButton action="#{orderController.addOrderLine}">
 						<f:param name="productid" value="#{productController.product.id}" />
 					</h:commandButton>
