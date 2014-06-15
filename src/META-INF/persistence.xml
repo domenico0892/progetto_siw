@@ -15,6 +15,7 @@
 		<class>it.uniroma3.model.Provider</class>
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings"  value="buildSchema(ForeignKeys=true)" />
+			<property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=cascade,JoinForeignKeyDeleteAction=cascade"/>
 		</properties>
 	</persistence-unit>
 </persistence>
