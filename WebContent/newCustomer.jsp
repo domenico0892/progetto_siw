@@ -14,7 +14,7 @@
 		<h:form>
 			<!-- Dati utente -->
 			<!-- <p align="center"><b>${customerController.message}</b></p>-->
-			<table align="center" class="table">
+			<table class="table">
 				<tr>
 					<td><h3>Dati del nuovo cliente</h3></td>
 				</tr>
@@ -60,7 +60,7 @@
 			</table>
 			<br>
 			<!-- Indirizzo -->
-			<table align="center" border="1">
+			<table class="table">
 				<tr>
 					<td><h3>Indirizzo del nuovo cliente</h3></td>
 				</tr>
@@ -98,7 +98,7 @@
 			<div align="center">
 				<h:commandButton value="Aggiungi"
 					action="#{customerController.createCustomer}" />
-			</div>
+			</div><br>
 		</h:form>
 	</f:view>
 </body>

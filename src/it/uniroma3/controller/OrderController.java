@@ -120,7 +120,7 @@ public class OrderController {
 			}
 		}
 	}
-	/* Validazione "a mano" del campo quantità inserita, poichè la validazione cancellava gli altri
+	/* Validazione "a mano" del campo quantita' inserita, poiche' la validazione cancellava gli altri
 	 * campi della pagina
 	 */
 	private Integer validaQuantita(String n) {

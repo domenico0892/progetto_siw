@@ -12,10 +12,11 @@
   <f:view>
   <%@ include file="header.html" %>
    <h:form>
+   <div align="center" style="color:green"><h4>Ordine presente</h4></div>
     <div align="center">
-    <h1>Cliente selezionato: ${orderController.customer.firstName} ${orderController.customer.lastName}</h1>
-	<table>
-    	<tr><td>Id ordine selezionato</td><td>${orderController.order.id}</td></tr>
+    <h4>Ordine associato a ${orderController.customer.firstName} ${orderController.customer.lastName}</h4>
+	<table class="table">
+    	<tr><td>Id ordine</td><td>${orderController.order.id}</td></tr>
     	<tr><td>Id cliente</td><td>${orderController.customer.id}</td>
     	<tr><td>Username</td><td>${orderController.customer.username}</td></tr>
     	<tr><td>Data di nascita</td><td>${orderController.customer.dateOfBirth}</td> </tr>

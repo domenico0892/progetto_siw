@@ -18,21 +18,21 @@
     <table class="table" border="1">
     <tr><td>Name: <h:inputText value="#{productController.name}" 
                      required="true"
-                     requiredMessage="Name is mandatory"
+                     requiredMessage="Questo campo è obbligatorio"
                      id="name"/> <h:message for="name" /></td></tr>
 	<tr><td>Code: <h:inputText value="#{productController.code}" 
                      required="true"
-                     requiredMessage="Code is mandatory"
+                     requiredMessage="Questo campo è obbligatorio"
                      id="code"/> <h:message for="code" /></td></tr>
 	<tr><td>Price: <h:inputText value="#{productController.price}" 
                      required="true"
                      requiredMessage="Price is mandatory"
-                     converterMessage="Price must be a number"
+                     converterMessage="Questo campo è obbligatorio"
                      id="price"/> <h:message for="price" /></td></tr>
 	<tr><td>Quantita': <h:inputText value="#{productController.quantity}" 
                      required="true"
                      requiredMessage="Quantity is mandatory"
-                     converterMessage="Quantity must be a number"
+                     converterMessage="Questo campo è obbligatorio"
                      id="quantity"/> <h:message for="quantity" /></td></tr>
     <tr><td>Description: <h:inputTextarea value="#{productController.description}" 
     				required="false" 

@@ -40,9 +40,10 @@ public class CustomerController {
 		this.customer = this.customerFacade.createCustomer(this.username, this.password, 
 				 this.firstName, this.lastName, this.email, this.phoneNumber, 
 				 this.dateOfBirth, this.address, new Date());
-		return "customerProfile";
+		this.message = "Cliente inserito correttamente";
+		return "summaryCustomer";
 		} catch (Exception e) {
-			this.message = "Username già esistente!";
+			this.message = "Username gia' esistente!";
 			return "newCustomer.jsp";
 		}
 	}
