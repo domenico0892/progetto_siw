@@ -60,7 +60,7 @@ public class ProductController {
 	public String createProduct() {
 		try {
 			this.product = this.productFacade.createProduct(name, code, price, description, quantity, vetrina);
-			return "product";
+			return "productAdmin";
 		} 
 		catch(Exception e) { 			
 			this.message = "Prodotto gia' esistente";
