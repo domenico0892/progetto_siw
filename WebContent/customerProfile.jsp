@@ -12,7 +12,7 @@
   <f:view>
   <%@ include file="header.html" %>
   <div align="center"><h1>Il mio profilo</h1></div><br>
-  ${customerController.customer.firstName} ${customerController.customer.lastName}<br>
+  <h3><b>${customerController.customer.firstName} ${customerController.customer.lastName}</b></h3><br>
    <h:form>
    <table class="table">
        	<tr><td>Id</td><td>${customerController.customer.id}</td>

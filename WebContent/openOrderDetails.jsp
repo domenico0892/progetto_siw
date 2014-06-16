@@ -20,22 +20,22 @@
 					<tr>
 						<th>Prodotto</th>
 						<th>Prezzo</th>
-						<th>Quantità</th>
+						<th>Quantita'</th>
 						<th>Azioni</th>
 					</tr>
 					<c:forEach var="orderline" items="#{orderController.order.orderLines}">
 							<tr><td>${orderline.product.name}</td>
 								<td>${orderline.price}</td>
 								<td>${orderline.quantity}</td>
-								<td><h:commandButton action="#{orderController.deleteOrderLine}"
+								<td><h:commandButton styleClass="btn btn-warning"  action="#{orderController.deleteOrderLine}"
 										value="Elimina">
 										<f:param name="selectedorder" value="#{orderController.order.id}" />
 										<f:param name="orderline" value="#{orderline.id}" />
 									</h:commandButton>
 									<br>
 									<h:inputText value="#{orderController.orderedQuantity}" />
-									<h:commandButton action="#{orderController.modifyQuantityOrderLine}"
-										value="Modifica quantità">
+									<h:commandButton styleClass="btn btn-warning"  action="#{orderController.modifyQuantityOrderLine}"
+										value="Modifica quantita'">
 										<f:param name="selectedorder" value="#{orderController.order.id}" />
 										<f:param name="orderline" value="#{orderline.id}" />
 									</h:commandButton></td>

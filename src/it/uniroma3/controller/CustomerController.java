@@ -41,10 +41,24 @@ public class CustomerController {
 				 this.firstName, this.lastName, this.email, this.phoneNumber, 
 				 this.dateOfBirth, this.address, new Date());
 		this.message = "Cliente inserito correttamente";
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("customerController");
 		return "summaryCustomer";
 		} catch (Exception e) {
 			this.message = "Username gia' esistente!";
-			return "newCustomer.jsp";
+			return "newCustomer";
+		}
+	}
+	
+	public String createCustomerByRegistration() {
+		this.address = new Address(this.street, this.city, this.state, this.zipcode, this.country);
+		try {
+		this.customer = this.customerFacade.createCustomer(this.username, this.password, 
+				 this.firstName, this.lastName, this.email, this.phoneNumber, 
+				 this.dateOfBirth, this.address, new Date());
+		return "customerProfile";
+		} catch (Exception e) {
+			this.message = "Username gia' esistente!";
+			return "newCustomerRegistration";
 		}
 	}
 

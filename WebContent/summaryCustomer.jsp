@@ -10,8 +10,8 @@
 </head>
 <f:view>
 <body>
-<h:form>
 <%@ include file="header.html" %>
+<h:form>
 	<div align="center" style="color:green"><h4>Cliente inserito correttamente</h4></div><br>
 	 <table class="table">
        	<tr><td>Id</td><td>${customerController.customer.id}</td>

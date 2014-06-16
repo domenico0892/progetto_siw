@@ -14,11 +14,11 @@
 <h:form>
 <div align="center">
 <table>
-    <tr><td>Username</td><td><h:inputText value="#{customerController.username}" 
+    <tr><td>Username</td><td><h:inputText value="#{customerController.username}" styleClass="form-control" 
                      required="true"
                      requiredMessage="Username obbligatorio!"
-                     id="username"/></td></tr>
-    <tr><td>Password</td><td><h:inputSecret value="#{customerController.password}" 
+                     id="username"/></td></tr><br>
+    <tr><td>Password</td><td><h:inputSecret value="#{customerController.password}"  styleClass="form-control" 
     	               required="true"
                      requiredMessage="Password obbligatoria!"
                      id="password"/></td></tr></table><br>
@@ -27,7 +27,7 @@
     <h:message for="password"/>
     <p align="center"><b>${customerController.message}</b></p><br>
     <div align="center">
-    <h3>Non sei ancora registrato? <h:outputLink value="faces/newCustomer.jsp">Clicca qui!</h:outputLink></h3>
+    <h3>Non sei ancora registrato? <h:outputLink style="color: Orange" value="faces/newCustomerRegistration.jsp">Clicca qui!</h:outputLink></h3>
     </div>
     
     </div>

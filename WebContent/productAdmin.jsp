@@ -45,7 +45,7 @@
 				<tr>
 					<td>Descrizione <h:inputText value="#{productController.description}"/></td></tr>
 				<tr>
-					<td><h:commandButton value="Conferma"
+					<td><h:commandButton value="Conferma" styleClass="btn btn-warning"
 							action="#{productController.updateProduct}">
 							<f:param name="id" value="#{productController.product.id}" />
 						</h:commandButton></td>
@@ -54,12 +54,11 @@
 		</h:form>
 		<div align="center">
 			<h:form>
-				<h:commandLink action="#{productController.providerEditor}"
+				<h:commandLink action="#{productController.providerEditor}" style="color: Orange"
 					value="Mostra e modifica i fornitori">
 					<f:param name="id" value="#{productController.id}" />
-				</h:commandLink>
-				
-				<h:commandLink action="#{productController.deleteProduct}" value="Elimina prodotto">
+				</h:commandLink><br>
+				<h:commandLink action="#{productController.deleteProduct}" value="Elimina prodotto" style="color: Orange">
 				 <f:param name="id" value="#{productController.id}" />
 				</h:commandLink>
 			</h:form>

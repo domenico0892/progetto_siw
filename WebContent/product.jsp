@@ -32,7 +32,7 @@
 				<c:if test="${sessionScope.currentOrder!=null}">
 				<div align="center"> Aggiungi questo prodotto all'ordine, inserendo la quantita'! <br>
 					<h:inputText value="#{orderController.orderedQuantity}" />
-					<h:commandButton action="#{orderController.addOrderLine}">
+					<h:commandButton styleClass="btn btn-warning"  action="#{orderController.addOrderLine}">
 						<f:param name="productid" value="#{productController.product.id}" />
 					</h:commandButton>
 					</div>

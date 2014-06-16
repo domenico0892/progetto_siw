@@ -23,7 +23,7 @@
 	<c:if test="${product.vetrina==true}">
 		<tr>
 		 <td>
-		  <h:commandLink action="#{productController.getProductById}" value="#{product.name}">
+		  <h:commandLink action="#{productController.getProductById}" value="#{product.name}" style="color: Orange">
 			<f:param name="id" value="#{product.id}" />
 		  </h:commandLink>
 		 </td>
@@ -37,9 +37,9 @@
 
 
 <!-- Link per login admin -->
-<div>
+<div align="center">
  <c:if test="${administratorController.administrator==null && customerController.customer==null}"> 
-	<h:outputLink value="faces/loginDashboard.jsp">Dashboard Amministrazione</h:outputLink> 
+	<h:outputLink style="color: Orange" value="faces/loginDashboard.jsp">Amministrazione</h:outputLink> 
  </c:if>
  </div>
 <!-------------------------->

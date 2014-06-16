@@ -22,10 +22,11 @@
 				</button>
 				<button type="button" class="btn btn-default btn-lg" onclick="cercaClientePerOrdine();">
   					<span class="glyphicon glyphicon-search"></span> Ricerca cliente
-				</button><br>
-				<h:commandLink action="#{orderController.listCloseOrders}">Visualizza ordini </h:commandLink>
-				<h:commandLink action="#{productController.listProducts}">Visualizza prodotti </h:commandLink>
-				<h:commandLink action="#{administratorController.logOut}">Log out </h:commandLink>
+				</button>
+				<h:commandButton styleClass="btn btn-default btn-lg" action="#{orderController.listCloseOrders}" value="Ordini chiusi">
+					<!--  <span class="glyphicon glyphicon-search"></span>-->
+				</h:commandButton>
+				<br>
 			</h:form>
 		</div>
 	</f:view>

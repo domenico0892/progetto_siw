@@ -11,12 +11,12 @@
 </head>
 <body>
 	<f:view>
+		<%@include file="header.html"%>
 		<h:form>
-			<!-- Dati utente -->
-			<!-- <p align="center"><b>${customerController.message}</b></p>-->
+			<p align="center"><b>${customerController.message}</b></p>
 			<table class="table">
 				<tr>
-					<td><h3>Dati del nuovo cliente</h3></td>
+					<td><h3>Inserisci i tuoi dati</h3></td>
 				</tr>
 				<tr>
 					<td>Username: <h:inputText
@@ -62,7 +62,7 @@
 			<!-- Indirizzo -->
 			<table class="table">
 				<tr>
-					<td><h3>Indirizzo del nuovo cliente</h3></td>
+					<td><h3>Indirizzo</h3></td>
 				</tr>
 				<tr>
 					<td>Citta': <h:inputText value="#{customerController.city}"
@@ -96,8 +96,8 @@
 				</tr>
 			</table><br>
 			<div align="center">
-				<h:commandButton styleClass="btn btn-warning"  value="Aggiungi"
-					action="#{customerController.createCustomer}" />
+				<h:commandButton styleClass="btn btn-warning"  value="Registrati"
+					action="#{customerController.createCustomerByRegistration}" />
 			</div><br>
 		</h:form>
 	</f:view>

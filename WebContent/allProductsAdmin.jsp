@@ -22,7 +22,7 @@
 	<c:forEach var="product" items="#{productController.products}">
 		<tr>
 		 <td>
-		  <h:commandLink action="#{productController.getProductById}" value="#{product.name}">
+		  <h:commandLink action="#{productController.getProductById}" value="#{product.name}" style="color: Orange">
 			<f:param name="id" value="#{product.id}" />
 		  </h:commandLink>
 		 </td>
