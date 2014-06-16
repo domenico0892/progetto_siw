@@ -14,8 +14,8 @@
     ID Ordine <h:inputText value="#{orderController.id}"
     					   required="true"
     					   requiredMessage="Non è stato inserito nessun codice"
-    					   id="orderId"/> <h:message for="orderId"/>
-    <h:commandButton value="Mostra cliente" action="#{orderController.getCustomerByIdOrder}"/>
+    					   id="orderId"/> <h:message for="orderId"/><br>
+    <h:commandButton styleClass="btn btn-warning"  value="Mostra cliente" action="#{orderController.getCustomerByIdOrder}"/>
    </div>
   </h:form>
  </f:view>

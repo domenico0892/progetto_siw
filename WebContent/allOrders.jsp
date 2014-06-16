@@ -14,15 +14,15 @@
   <h:form>
    <div align="center"><h1>Ordini chiusi</h1>
     <table class="table">
-     <tr><th>Azione</th> <th>Id Ordine</th> <th>Data chiusura</th> <th>Id Cliente</th></tr>
+     <tr> <th>Id Ordine</th> <th>Data chiusura</th> <th>Id Cliente</th><th>Azione</th></tr>
      <c:forEach var="order" items="#{orderController.orders}">
     	<tr>
-    		<td><h:commandButton action="#{orderController.evadeOrder}" value="Evadi">
-    				<f:param name="id" value="#{order.id}" />
-    			</h:commandButton></td>
     		<td><b>${order.id}</b></td>
     		<td>${order.closeDate}</td>
     		<td>${order.customer.id}</td>
+    		    <td><h:commandButton styleClass="btn btn-warning" action="#{orderController.evadeOrder}" value="Evadi">
+    				<f:param name="id" value="#{order.id}" />
+    			</h:commandButton></td>
     	</tr>
      </c:forEach>
     </table>

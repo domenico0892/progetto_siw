@@ -25,13 +25,13 @@
 					</tr>
 					<c:forEach var="provider" items="#{productController.providers}">
 						<tr>
-							<td><h:commandLink
+							<td><h:commandLink style="color: Orange"
 									action="#{providerController.getProviderDetails}"
 									value="#{provider.id}">
 									<f:param name="id" value="#{provider.id}" />
 								</h:commandLink></td>
 							<td>${provider.name}</td>
-							<td><h:commandButton
+							<td><h:commandButton styleClass="btn btn-warning" 
 									action="#{productController.addProvider}"
 									value="Aggiungi provider">
 									<f:param name="providerid" value="#{provider.id}" />

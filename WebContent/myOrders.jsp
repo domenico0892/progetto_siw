@@ -16,8 +16,8 @@
 			<h1>I miei ordini</h1>
 		</div>
 		<h:form>
-			<div>
-				<h:commandButton action="#{orderController.newOrder}"
+			<div align = "center">
+				<h:commandButton styleClass="btn btn-warning"  action="#{orderController.newOrder}"
 					value="Nuovo ordine" />
 			</div>
 			<div>
@@ -33,16 +33,16 @@
 					<c:forEach var="order" items="#{orderController.orders}">
 						<c:if test="${order.status=='aperto'}">
 							<tr>
-								<td><h:commandLink
+								<td><h:commandLink style="color: Orange"
 										action="#{orderController.getOrderDetails}"
 										value="#{order.id}">
 										<f:param name="selectedorder" value="#{order.id}" />
 									</h:commandLink></td>
 								<td>${order.creationDate}</td>
-								<td><h:commandButton
+								<td><h:commandButton styleClass="btn btn-warning" 
 										action="#{orderController.selectOrder}" value="Aggiungi prodotti">
 										<f:param name="selectedorder" value="#{order.id}" />
-									</h:commandButton> <h:commandButton action="#{orderController.closeOrder}"
+									</h:commandButton> <h:commandButton styleClass="btn btn-warning"  action="#{orderController.closeOrder}"
 										value="Chiudi">
 										<f:param name="selectedorder" value="#{order.id}" />
 									</h:commandButton></td>
@@ -62,7 +62,7 @@
 					<c:forEach var="order" items="#{orderController.orders}">
 						<c:if test="${order.status=='chiuso'}">
 							<tr>
-								<td><h:commandLink
+								<td><h:commandLink style="color: Orange"
 										action="#{orderController.getOrderDetails}"
 										value="#{order.id}">
 										<f:param name="selectedorder" value="#{order.id}" />
@@ -86,7 +86,7 @@
 					<c:forEach var="order" items="#{orderController.orders}">
 						<c:if test="${order.status=='evaso'}">
 							<tr>
-								<td><h:commandLink
+								<td><h:commandLink style="color: Orange"
 										action="#{orderController.getOrderDetails}"
 										value="#{order.id}">
 										<f:param name="selectedorder" value="#{order.id}" />

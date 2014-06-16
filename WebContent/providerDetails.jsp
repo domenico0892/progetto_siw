@@ -40,7 +40,7 @@
 				<td>${providerController.provider.address.street}</td>
 			</tr>
 			<tr>
-				<td>Città</td>
+				<td>Citta'</td>
 				<td>${providerController.provider.address.city}</td>
 			</tr>
 			<tr>

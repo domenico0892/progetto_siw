@@ -38,10 +38,10 @@
     				required="false" 
     				cols="20" 
     				rows="5" /></td></tr>
-    <tr><td>Vetrina?: <h:selectBooleanCheckbox value="#{productController.vetrina}"/>          
+    <tr><td>Vetrina?: <h:selectBooleanCheckbox value="#{productController.vetrina}"/> </td></tr>       
 	</table>
 	<div>
-		<h:commandButton value="Aggiungi"  action="#{productController.createProduct}"/>
+		<h:commandButton styleClass="btn btn-warning"  value="Aggiungi"  action="#{productController.createProduct}"/>
 	</div>
 </h:form>
 </f:view>
